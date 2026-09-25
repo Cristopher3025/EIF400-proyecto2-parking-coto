@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class VehicleAlreadyParkedException {
-    
+public class VehicleAlreadyParkedException extends ParkingException {
+
+	public VehicleAlreadyParkedException(String message) {
+		super(message);
+	}
 }

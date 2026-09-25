@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class ParkingException {
-    
+public class ParkingException extends RuntimeException {
+
+	public ParkingException(String message) {
+		super(message);
+	}
 }

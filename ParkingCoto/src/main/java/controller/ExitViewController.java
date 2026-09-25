@@ -4,23 +4,42 @@
  */
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.util.Objects;
 
-/**
- * FXML Controller class
- *
- * @author Justin PC
- */
-public class ExitViewController implements Initializable {
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import model.ticket.ParkingTicket;
+import service.ParkingContext;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+public class ExitViewController {
+
+    private final ParkingContext context;
+
+    @FXML
+    private TextField ticketIdField;
+
+    @FXML
+    private Label ticketDetailsLabel;
+
+    @FXML
+    private Label messageLabel;
+
+    public ExitViewController(ParkingContext context) {
+        this.context = Objects.requireNonNull(context, "Parking context cannot be null");
+    }
+
+    @FXML
+    private void findTicket() {
+        try {
+            ParkingTicket ticket = context.getQueryService().findActiveTicket(ticketIdField.getText());
+            ticketDetailsLabel.setText("Vehicle: " + ticket.getVehicle().getLicensePlate()
+                    + " | Space: " + ticket.getParkingSpace().getNumber()
+                    + " | Entry: " + ticket.getEntryTime());
+            messageLabel.setText("");
+        } catch (RuntimeException exception) {
+            ticketDetailsLabel.setText("");
+            messageLabel.setText(exception.getMessage());
+        }
+    }
 }

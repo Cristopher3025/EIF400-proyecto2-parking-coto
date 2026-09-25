@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class VehicleNotFoundException {
-    
+public class VehicleNotFoundException extends ParkingException {
+
+	public VehicleNotFoundException(String message) {
+		super(message);
+	}
 }

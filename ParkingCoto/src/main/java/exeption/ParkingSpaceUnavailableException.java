@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class ParkingSpaceUnavailableException {
-    
+public class ParkingSpaceUnavailableException extends ParkingException {
+
+	public ParkingSpaceUnavailableException(String message) {
+		super(message);
+	}
 }

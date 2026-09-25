@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class TicketNotFoundException {
-    
+public class TicketNotFoundException extends ParkingException {
+
+	public TicketNotFoundException(String message) {
+		super(message);
+	}
 }

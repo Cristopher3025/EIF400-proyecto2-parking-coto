@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class InvalidPaymentException {
-    
+public class InvalidPaymentException extends ParkingException {
+
+	public InvalidPaymentException(String message) {
+		super(message);
+	}
 }
