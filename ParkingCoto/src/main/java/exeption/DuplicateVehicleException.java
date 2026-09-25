@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class DuplicateVehicleException {
-    
+public class DuplicateVehicleException extends ParkingException {
+
+	public DuplicateVehicleException(String message) {
+		super(message);
+	}
 }

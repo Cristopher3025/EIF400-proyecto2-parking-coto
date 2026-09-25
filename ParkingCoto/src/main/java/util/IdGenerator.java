@@ -4,10 +4,16 @@
  */
 package util;
 
-/**
- *
- * @author Justin PC
- */
-public class IdGenerator {
-    
+import java.util.concurrent.atomic.AtomicLong;
+
+public final class IdGenerator {
+
+	private static final AtomicLong SEQUENCE = new AtomicLong();
+
+	private IdGenerator() {
+	}
+
+	public static String nextTicketId() {
+		return "T-" + SEQUENCE.incrementAndGet();
+	}
 }

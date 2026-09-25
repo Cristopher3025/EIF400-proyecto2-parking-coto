@@ -4,10 +4,9 @@
  */
 package exeption;
 
-/**
- *
- * @author Justin PC
- */
-public class InvalidTicketStatusException {
-    
+public class InvalidTicketStatusException extends ParkingException {
+
+	public InvalidTicketStatusException(String message) {
+		super(message);
+	}
 }

@@ -4,23 +4,44 @@
  */
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.util.Objects;
 
-/**
- * FXML Controller class
- *
- * @author Justin PC
- */
-public class ReportsViewController implements Initializable {
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import service.ParkingContext;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+public class ReportsViewController {
+
+    private final ParkingContext context;
+
+    @FXML
+    private Label totalSpacesLabel;
+
+    @FXML
+    private Label availableSpacesLabel;
+
+    @FXML
+    private Label occupiedSpacesLabel;
+
+    @FXML
+    private Label revenueLabel;
+
+    public ReportsViewController(ParkingContext context) {
+        this.context = Objects.requireNonNull(context, "Parking context cannot be null");
+    }
+
+    @FXML
+    private void initialize() {
+        refresh();
+    }
+
+    @FXML
+    private void refresh() {
+        totalSpacesLabel.setText(String.valueOf(context.getQueryService().getParkingSpaces().size()));
+        availableSpacesLabel.setText(String.valueOf(
+                context.getQueryService().getAvailableParkingSpaces().size()));
+        occupiedSpacesLabel.setText(String.valueOf(
+                context.getQueryService().getOccupiedParkingSpaces().size()));
+        revenueLabel.setText(context.getQueryService().getTotalRevenue().toPlainString());
+    }
 }
