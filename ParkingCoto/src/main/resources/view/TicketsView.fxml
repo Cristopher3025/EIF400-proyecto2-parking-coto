@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AP_TICKETS_VIEW" prefHeight="540.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TicketsViewController">
+<AnchorPane id="AnchorPane" fx:id="AP_TICKETS_VIEW" prefHeight="482.0" prefWidth="946.0" stylesheets="@../css/parking-coto.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TicketsViewController">
    <children>
       <TableView fx:id="TV_TICKET_MANAGEMENT" layoutY="101.0" prefHeight="439.0" prefWidth="946.0">
         <columns>

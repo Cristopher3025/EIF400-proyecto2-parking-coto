@@ -1,24 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsViewController">
-	<VBox spacing="14.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-		<Label text="Reports" />
-		<GridPane hgap="20.0" vgap="12.0">
-			<Label text="Total spaces" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-			<Label fx:id="totalSpacesLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-			<Label text="Available spaces" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-			<Label fx:id="availableSpacesLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-			<Label text="Occupied spaces" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-			<Label fx:id="occupiedSpacesLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-			<Label text="Total revenue" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-			<Label fx:id="revenueLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-		</GridPane>
-		<Button mnemonicParsing="false" onAction="#refresh" text="Refresh" />
-	</VBox>
+<AnchorPane id="AnchorPanerReportsView" fx:id="AP_REPORTS" prefHeight="482.0" prefWidth="946.0" stylesheets="@../css/parking-coto.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsViewController">
+   <children>
+      <AnchorPane id="cardTotalTickets" layoutX="14.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Total de tickets">
+               <font>
+                  <Font name="Trebuchet MS" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="15.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/4288596analyticschartgrowthincreasingstocks-115760_115753.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LBL_TOTAL_TICKETS" layoutX="114.0" layoutY="55.0" prefHeight="41.0" prefWidth="50.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="cardTotalTicketsClosed" layoutX="485.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Tickets cerrados">
+               <font>
+                  <Font name="Trebuchet MS" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="19.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/power_closethesession_exit_close_1840.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LBL_TOTAL_TICKETS_CLOSE" layoutX="125.0" layoutY="53.0" prefHeight="41.0" prefWidth="50.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="cardTotalTicketsPayment" layoutX="718.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Tickets pagados">
+               <font>
+                  <Font name="Trebuchet MS" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="18.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/1495815258-jd02_84598.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LBL_TOTAL_TICKETS_PAYMENT" layoutX="128.0" layoutY="54.0" prefHeight="41.0" prefWidth="50.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="cardOccupancyBySpaceType" layoutX="15.0" layoutY="253.0" prefHeight="257.0" prefWidth="593.0">
+         <children>
+            <BarChart fx:id="BC_TYPE_SPACE" layoutX="14.0" layoutY="10.0" prefHeight="265.0" prefWidth="564.0" title="Ocupacion por tipo de espacio">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="cardTotañTicketsActive" layoutX="249.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0" stylesheets="@../css/parking-coto.css">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Tickets activos">
+               <font>
+                  <Font name="Trebuchet MS" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="14.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/sign-check-icon_34365.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LBL_TOTAL_TICKETS_ACTIVE" layoutX="119.0" layoutY="56.0" prefHeight="41.0" prefWidth="50.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="cardTotalRevenue" layoutX="634.0" layoutY="253.0" prefHeight="265.0" prefWidth="299.0">
+         <children>
+            <Label layoutX="97.0" layoutY="20.0" text="Ingresos totales">
+               <font>
+                  <Font name="Trebuchet MS" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="83.0" fitWidth="90.0" layoutX="14.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/business-color_coins_icon-icons.com_53461.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="LBL_TOTAL_REVENUE" layoutX="97.0" layoutY="114.0" prefHeight="27.0" prefWidth="180.0">
+               <font>
+                  <Font name="Trebuchet MS" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="400.0" layoutY="22.0" prefHeight="19.0" prefWidth="147.0" text="Consultas y reportes">
+         <font>
+            <Font name="Trebuchet MS" size="15.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

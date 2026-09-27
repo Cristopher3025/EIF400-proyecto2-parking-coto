@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AP_PAYMENT" prefHeight="540.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentViewController">
+<AnchorPane id="AnchorPane" fx:id="AP_PAYMENT" prefHeight="482.0" prefWidth="946.0" stylesheets="@../css/parking-coto.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentViewController">
    <children>
-      <AnchorPane prefHeight="540.0" prefWidth="367.0">
+      <AnchorPane id="cardDataTicket" prefHeight="540.0" prefWidth="367.0">
          <children>
             <Label layoutX="108.0" layoutY="8.0" prefHeight="32.0" prefWidth="152.0" text="Datos del ticket">
                <font>
@@ -41,14 +41,14 @@
             <JFXTextArea fx:id="TA_STATE" editable="false" layoutX="195.0" layoutY="494.0" prefHeight="32.0" prefWidth="116.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="367.0" prefHeight="540.0" prefWidth="578.0">
+      <AnchorPane id="cardDataPayment" layoutX="418.0" prefHeight="540.0" prefWidth="527.0">
          <children>
             <Label layoutX="199.0" layoutY="14.0" prefHeight="58.0" prefWidth="181.0" text="Datos del pago">
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="BTN_PROCESS_PAYMENT" layoutX="213.0" layoutY="313.0" onAction="#RecordPayment" prefHeight="105.0" prefWidth="152.0" text="Procesar Pago" />
+            <JFXButton fx:id="BTN_PROCESS_PAYMENT" layoutX="188.0" layoutY="320.0" onAction="#RecordPayment" prefHeight="105.0" prefWidth="152.0" text="Procesar Pago" />
             <MFXComboBox fx:id="CB_TYPE_PAYMENT" layoutX="155.0" layoutY="186.0" prefHeight="23.0" prefWidth="269.0" promptText="Seleccionar tipo de pago" />
          </children>
       </AnchorPane>

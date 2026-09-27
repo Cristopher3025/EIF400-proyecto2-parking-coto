@@ -12,24 +12,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AP_VEHICLES" prefHeight="540.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VehiclesViewController">
+<AnchorPane id="AnchorPane" fx:id="AP_VEHICLES" prefHeight="482.0" prefWidth="946.0" stylesheets="@../css/parking-coto.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VehiclesViewController">
    <children>
-      <AnchorPane prefHeight="540.0" prefWidth="367.0">
+      <AnchorPane id="cardRegisterInformationVehicle" layoutX="14.0" layoutY="28.0" prefHeight="505.0" prefWidth="328.0">
          <children>
-            <Label layoutX="108.0" layoutY="21.0" prefHeight="58.0" prefWidth="152.0" text="Registrar vehículo">
+            <Label layoutX="86.0" layoutY="25.0" prefHeight="58.0" prefWidth="152.0" text="Registrar vehículo">
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="BTN_REGISTER" layoutX="126.0" layoutY="452.0" onAction="#RegisterVehicle" prefHeight="48.0" prefWidth="116.0" text="Registrar" />
-            <MFXTextField fx:id="TF_PLATE" layoutX="99.0" layoutY="96.0" prefHeight="25.0" prefWidth="181.0" promptText="Placa" />
-            <MFXTextField fx:id="TF_BRAND" layoutX="96.0" layoutY="163.0" prefHeight="25.0" prefWidth="181.0" promptText="Marca" />
-            <MFXTextField fx:id="TF_MODEL" layoutX="96.0" layoutY="234.0" prefHeight="25.0" prefWidth="181.0" promptText="Modelo" />
-            <MFXComboBox fx:id="CB_TYPE_VEHICLE" layoutX="93.0" layoutY="384.0" prefHeight="23.0" prefWidth="181.0" promptText="Seleccione el tipo de vehículo" />
-            <MFXTextField fx:id="TF_COLOR" layoutX="96.0" layoutY="307.0" prefHeight="25.0" prefWidth="181.0" promptText="Color" />
+            <JFXButton fx:id="BTN_REGISTER" layoutX="104.0" layoutY="443.0" onAction="#RegisterVehicle" prefHeight="48.0" prefWidth="116.0" text="Registrar" />
+            <MFXTextField fx:id="TF_PLATE" layoutX="77.0" layoutY="100.0" prefHeight="25.0" prefWidth="181.0" promptText="Placa" unfocusedLineColor="WHITE" />
+            <MFXTextField fx:id="TF_BRAND" layoutX="74.0" layoutY="167.0" prefHeight="25.0" prefWidth="181.0" promptText="Marca" unfocusedLineColor="WHITE" />
+            <MFXTextField fx:id="TF_MODEL" layoutX="74.0" layoutY="238.0" prefHeight="25.0" prefWidth="181.0" promptText="Modelo" unfocusedLineColor="WHITE" />
+            <MFXComboBox fx:id="CB_TYPE_VEHICLE" layoutX="71.0" layoutY="388.0" prefHeight="23.0" prefWidth="181.0" promptText="Seleccione el tipo de vehículo" unfocusedLineColor="WHITE" />
+            <MFXTextField fx:id="TF_COLOR" layoutX="74.0" layoutY="311.0" prefHeight="25.0" prefWidth="181.0" promptText="Color" unfocusedLineColor="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="367.0" prefHeight="540.0" prefWidth="578.0">
+      <AnchorPane id="cardVehicleInformation" layoutX="361.0" layoutY="27.0" prefHeight="505.0" prefWidth="578.0">
          <children>
             <Label layoutX="199.0" layoutY="14.0" prefHeight="58.0" prefWidth="181.0" text="Vehículos registrados">
                <font>
@@ -42,7 +42,7 @@
                   <Image url="@../images/3844432-magnifier-search-zoom_110300.png" />
                </image>
             </ImageView>
-            <TableView fx:id="TV_REGISTERED_VEHICLES" layoutY="131.0" prefHeight="409.0" prefWidth="578.0">
+            <TableView fx:id="TV_REGISTERED_VEHICLES" layoutY="131.0" prefHeight="376.0" prefWidth="578.0">
               <columns>
                 <TableColumn fx:id="TV_RW_PLATE" prefWidth="130.0" text="Placa" />
                 <TableColumn fx:id="TV_RW_BRAND" prefWidth="112.0" text="Marca" />

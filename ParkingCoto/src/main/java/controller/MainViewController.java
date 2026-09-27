@@ -59,11 +59,6 @@ public class MainViewController implements Initializable {
     @FXML
     private Label LBL_TOTAL_SPACES;
 
-    @FXML
-    private Label LBL_OCCUPIED;
-
-    @FXML
-    private Label LBL_AVAILABLE;
 
     @FXML
     private Label LBL_TOTAL_REVENUE;
@@ -106,12 +101,6 @@ public class MainViewController implements Initializable {
     @FXML
     private ProgressBar PB_CARGO_VEHICLE;
 
-    // =========================================================
-    // DASHBOARD CONTAINERS
-    // =========================================================
-
-    @FXML
-    private StackPane SP_INFORMATION_1;
 
     /*
      * Dynamic application content area.
@@ -123,6 +112,10 @@ public class MainViewController implements Initializable {
     private AnchorPane AP_INFORMATION_2;
 
     private List<Node> dashboardInformationNodes;
+    @FXML
+    private Label LBL_SPACES_OCCUPATED;
+    @FXML
+    private Label LBL_SPACES_AVAILABLE;
 
     // =========================================================
     // INITIALIZATION

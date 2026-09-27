@@ -1,0 +1,1071 @@
+/* ================================================================
+   PARKING COTO
+   Hoja de estilos global
+   Proyecto II - Paradigmas de Programación
+   Universidad Nacional de Costa Rica
+   ================================================================ */
+
+
+/* ================================================================
+   1. CONFIGURACIÓN GENERAL
+   ================================================================ */
+
+.root {
+    -fx-font-family: "Trebuchet MS";
+    -fx-background-color: #F4F7FB;
+
+    /* Paleta principal */
+    -parking-blue: #034F84;
+    -parking-blue-dark: #02385E;
+    -parking-blue-light: #E8F2F9;
+
+    -parking-green: #198754;
+    -parking-green-light: #E8F5EE;
+
+    -parking-red: #C0392B;
+    -parking-red-light: #FBEAEC;
+
+    -parking-orange: #E67E22;
+    -parking-orange-light: #FFF3E6;
+
+    -parking-purple: #6F42C1;
+
+    -parking-background: #F4F7FB;
+    -parking-card: #FFFFFF;
+
+    -parking-text: #243447;
+    -parking-text-secondary: #6C7A89;
+
+    -parking-border: #DCE3EA;
+}
+
+
+/* ================================================================
+   2. FONDOS PRINCIPALES
+   ================================================================ */
+
+#AnchorPane,
+#AnchorPanerReportsView {
+    -fx-background-color: #F4F7FB;
+}
+
+
+/* ================================================================
+   3. LABELS
+   ================================================================ */
+
+.label {
+    -fx-text-fill: #243447;
+}
+
+/*
+   Los títulos que ya tienen tamaños definidos desde Scene Builder
+   conservarán sus tamaños.
+*/
+
+
+/* ================================================================
+   4. BOTONES GENERALES JFOENIX
+   ================================================================ */
+
+.jfx-button {
+    -fx-background-color: #034F84;
+    -fx-text-fill: white;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 8px;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.18),
+        8,
+        0.15,
+        0,
+        2
+    );
+}
+
+.jfx-button:hover {
+    -fx-background-color: #0869A8;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(3, 79, 132, 0.35),
+        12,
+        0.25,
+        0,
+        3
+    );
+}
+
+.jfx-button:pressed {
+    -fx-background-color: #02385E;
+
+    -fx-translate-y: 1px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.15),
+        4,
+        0.10,
+        0,
+        1
+    );
+}
+
+
+/* ================================================================
+   5. CAMPOS DE TEXTO JFOENIX
+   ================================================================ */
+
+.jfx-text-field {
+    -fx-text-fill: #243447;
+
+    -fx-prompt-text-fill: #8A98A6;
+
+    -jfx-focus-color: #034F84;
+    -jfx-unfocus-color: #B8C4CE;
+
+    -fx-font-size: 13px;
+}
+
+
+/* ================================================================
+   6. TEXT AREA JFOENIX
+   ================================================================ */
+
+.jfx-text-area {
+    -fx-text-fill: #243447;
+    -fx-prompt-text-fill: #8A98A6;
+
+    -jfx-focus-color: #034F84;
+    -jfx-unfocus-color: #CDD6DE;
+
+    -fx-font-size: 13px;
+}
+
+
+/* ================================================================
+   7. MATERIALFX TEXT FIELD
+   ================================================================ */
+
+.mfx-text-field {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #D7E0E8;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 5px 10px 5px 10px;
+
+    -fx-font-size: 13px;
+}
+
+.mfx-text-field:focus-within {
+    -fx-border-color: #034F84;
+    -fx-border-width: 1.5px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(3, 79, 132, 0.16),
+        7,
+        0.10,
+        0,
+        1
+    );
+}
+
+
+/* ================================================================
+   8. MATERIALFX COMBO BOX
+   ================================================================ */
+
+.mfx-combo-box {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #D7E0E8;
+    -fx-border-width: 1px;
+    -fx-border-radius: 7px;
+
+    -fx-background-radius: 7px;
+
+    -fx-font-size: 12px;
+}
+
+.mfx-combo-box:focus-within {
+    -fx-border-color: #034F84;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(3, 79, 132, 0.15),
+        6,
+        0.10,
+        0,
+        1
+    );
+}
+
+
+/* ================================================================
+   9. TARJETAS GENERALES
+   ================================================================ */
+
+/*
+   Paneles principales de formularios.
+*/
+
+#cardRegisterInformationVehicle,
+#cardVehicleInformation,
+
+#cardRegisterSpace,
+
+#cardRegisterDataVehicle,
+#cardIncomeResult,
+
+#cardDataTicket,
+#cardResultExit,
+
+#cardDataPayment {
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #E0E6EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.12),
+        14,
+        0.12,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   10. DASHBOARD - CONTENEDOR
+   ================================================================ */
+
+#cardPrincipalInformation {
+    -fx-background-color: #F4F7FB;
+}
+
+
+/* ================================================================
+   11. DASHBOARD - ESPACIOS TOTALES
+   ================================================================ */
+
+#cardTotalSpaces {
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #EDF6FC
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #BFD9EA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(3, 79, 132, 0.16),
+        12,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   12. DASHBOARD - OCUPADOS
+   ================================================================ */
+
+#cardOcupated {
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #FCEBEC
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #EAB8BC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(192, 57, 43, 0.14),
+        12,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   13. DASHBOARD - DISPONIBLES
+   ================================================================ */
+
+#cardAvailable {
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #E8F6EE
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #B9DFC9;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(25, 135, 84, 0.15),
+        12,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   14. DASHBOARD - INGRESOS
+   ================================================================ */
+
+#cardTotalRevenue {
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #FFF5E6
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #F1D39D;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(230, 126, 34, 0.16),
+        12,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   15. DASHBOARD - OCUPACIÓN POR TIPO
+   ================================================================ */
+
+#cardInformationVehiclesForTotalAndPercentage {
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #DFE6EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.10),
+        14,
+        0.10,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   16. DASHBOARD - TICKETS ACTIVOS
+   ================================================================ */
+
+#cardActiveTicket {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #034F84,
+            #0876B9
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(3, 79, 132, 0.32),
+        16,
+        0.20,
+        0,
+        4
+    );
+}
+
+#cardActiveTicket .label {
+    -fx-text-fill: white;
+}
+
+#LBL_ACTIVE_TICKETS {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+
+/* ================================================================
+   17. NÚMEROS DEL DASHBOARD
+   ================================================================ */
+
+#LBL_TOTAL_SPACES,
+#LBL_SPACES_OCCUPATED,
+#LBL_SPACES_AVAILABLE {
+
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+#LBL_TOTAL_REVENUE {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+
+/* ================================================================
+   18. PROGRESS BAR
+   ================================================================ */
+
+.progress-bar {
+    -fx-pref-height: 11px;
+}
+
+.progress-bar > .track {
+
+    -fx-background-color: #E3E9EF;
+
+    -fx-background-radius: 10px;
+}
+
+.progress-bar > .bar {
+
+    -fx-background-color:
+        linear-gradient(
+            to right,
+            #034F84,
+            #1597D4
+        );
+
+    -fx-background-radius: 10px;
+
+    -fx-background-insets: 0;
+}
+
+
+/* ================================================================
+   19. TABLE VIEW
+   ================================================================ */
+
+.table-view {
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 10px;
+
+    -fx-border-color: #DDE5EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+
+    -fx-padding: 0;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.08),
+        10,
+        0.08,
+        0,
+        2
+    );
+}
+
+
+/* Fondo vacío de tabla */
+
+.table-view .virtual-flow {
+    -fx-background-color: #FFFFFF;
+}
+
+
+/* ================================================================
+   20. CABECERA TABLE VIEW
+   ================================================================ */
+
+.table-view .column-header-background {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom,
+            #075A92,
+            #034F84
+        );
+
+    -fx-background-radius: 9px 9px 0px 0px;
+}
+
+.table-view .column-header {
+
+    -fx-background-color: transparent;
+
+    -fx-size: 42px;
+
+    -fx-border-color: transparent rgba(255,255,255,0.12) transparent transparent;
+}
+
+.table-view .column-header .label {
+
+    -fx-text-fill: white;
+
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+
+    -fx-alignment: CENTER;
+}
+
+
+/* ================================================================
+   21. FILAS TABLE VIEW
+   ================================================================ */
+
+.table-row-cell {
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: transparent transparent #EDF1F5 transparent;
+
+    -fx-table-cell-border-color: transparent;
+
+    -fx-cell-size: 38px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F8FAFC;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #E8F2F9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #CFE5F3;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #17324A;
+}
+
+.table-cell {
+
+    -fx-text-fill: #34495E;
+
+    -fx-font-size: 12px;
+
+    -fx-alignment: CENTER;
+
+    -fx-border-color: transparent;
+}
+
+
+/* ================================================================
+   22. SCROLL BAR
+   ================================================================ */
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+
+    -fx-background-color: #B7C4CE;
+
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .thumb:hover {
+
+    -fx-background-color: #8397A6;
+}
+
+
+/* ================================================================
+   23. VEHÍCULOS
+   ================================================================ */
+
+#cardRegisterInformationVehicle {
+
+    -fx-border-color: #D6E5F0;
+}
+
+#cardVehicleInformation {
+
+    -fx-border-color: #DDE5EB;
+}
+
+
+/* ================================================================
+   24. ESPACIOS DE PARQUEO
+   ================================================================ */
+
+#cardRegisterSpace {
+
+    -fx-border-color: #D6E5F0;
+}
+
+#cardInformationSpaces {
+
+    -fx-background-radius: 10px;
+}
+
+
+/* ================================================================
+   25. BOTÓN FUERA DE SERVICIO
+   ================================================================ */
+
+#BTN_OUT_OF_SERVICE {
+
+    -fx-background-color: #C0392B;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 7px;
+}
+
+#BTN_OUT_OF_SERVICE:hover {
+
+    -fx-background-color: #A93226;
+}
+
+
+/* ================================================================
+   26. BOTÓN HABILITAR ESPACIO
+   ================================================================ */
+
+#BTN_RESTORE_SERVICE {
+
+    -fx-background-color: #198754;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 7px;
+}
+
+#BTN_RESTORE_SERVICE:hover {
+
+    -fx-background-color: #146C43;
+}
+
+
+/* ================================================================
+   27. INGRESO - DATOS DEL VEHÍCULO
+   ================================================================ */
+
+#cardRegisterDataVehicle {
+
+    -fx-border-color: #D4E3EE;
+}
+
+
+/* ================================================================
+   28. INGRESO - RESULTADO
+   ================================================================ */
+
+#cardIncomeResult {
+
+    -fx-border-color: #D4E3EE;
+}
+
+
+/* ================================================================
+   29. INGRESO CORRECTO
+   ================================================================ */
+
+#cardEntryCorrected {
+
+    -fx-background-color:
+        linear-gradient(
+            to right,
+            #E8F5EE,
+            #F5FBF7
+        );
+
+    -fx-background-radius: 10px;
+
+    -fx-border-color: #A9D8BD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+#LBL_CORRECT_ENTRY {
+
+    -fx-text-fill: #198754;
+
+    -fx-font-weight: bold;
+}
+
+
+/* ================================================================
+   30. SALIDA - DATOS TICKET
+   ================================================================ */
+
+#cardDataTicket {
+
+    -fx-border-color: #D6E4EE;
+}
+
+
+/* ================================================================
+   31. SALIDA - RESULTADO
+   ================================================================ */
+
+#cardResultExit {
+
+    -fx-border-color: #D6E4EE;
+}
+
+
+/* ================================================================
+   32. PAGO
+   ================================================================ */
+
+#cardDataPayment {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #F2F8FC
+        );
+
+    -fx-border-color: #C8DDEA;
+}
+
+
+/* Botón principal de pago */
+
+#BTN_PROCESS_PAYMENT {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #198754,
+            #20A468
+        );
+
+    -fx-background-radius: 15px;
+
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(25, 135, 84, 0.30),
+        15,
+        0.20,
+        0,
+        4
+    );
+}
+
+#BTN_PROCESS_PAYMENT:hover {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #157347,
+            #198754
+        );
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(25, 135, 84, 0.42),
+        18,
+        0.25,
+        0,
+        5
+    );
+}
+
+
+/* ================================================================
+   33. REPORTES - CONTENEDOR
+   ================================================================ */
+
+#AnchorPanerReportsView {
+
+    -fx-background-color: #F4F7FB;
+}
+
+
+/* ================================================================
+   34. REPORTES - TARJETAS
+   ================================================================ */
+
+#cardTotalTickets,
+#cardTotañTicketsActive,
+#cardTotalTicketsClosed,
+#cardTotalTicketsPayment {
+
+    -fx-background-radius: 13px;
+
+    -fx-border-radius: 13px;
+
+    -fx-border-width: 1px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.12),
+        12,
+        0.12,
+        0,
+        3
+    );
+}
+
+
+/* Total tickets */
+
+#cardTotalTickets {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #E9F3FA
+        );
+
+    -fx-border-color: #BCD8E9;
+}
+
+
+/* Tickets activos */
+
+#cardTotañTicketsActive {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #E9F6EF
+        );
+
+    -fx-border-color: #B7DFC8;
+}
+
+
+/* Tickets cerrados */
+
+#cardTotalTicketsClosed {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #F2F3F5
+        );
+
+    -fx-border-color: #D4D8DD;
+}
+
+
+/* Tickets pagados */
+
+#cardTotalTicketsPayment {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #FFF3E5
+        );
+
+    -fx-border-color: #F0D1A6;
+}
+
+
+/* ================================================================
+   35. REPORTES - NÚMEROS
+   ================================================================ */
+
+#LBL_TOTAL_TICKETS,
+#LBL_TOTAL_TICKETS_ACTIVE,
+#LBL_TOTAL_TICKETS_CLOSE,
+#LBL_TOTAL_TICKETS_PAYMENT {
+
+    -fx-font-size: 25px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: #243447;
+}
+
+
+/* ================================================================
+   36. REPORTES - GRÁFICO
+   ================================================================ */
+
+#cardOccupancyBySpaceType {
+
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #DFE6EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.10),
+        12,
+        0.10,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   37. BAR CHART
+   ================================================================ */
+
+.chart {
+
+    -fx-background-color: transparent;
+
+    -fx-padding: 10px;
+}
+
+.chart-plot-background {
+
+    -fx-background-color: #FAFBFC;
+}
+
+.chart-title {
+
+    -fx-text-fill: #243447;
+
+    -fx-font-size: 15px;
+
+    -fx-font-weight: bold;
+}
+
+.axis {
+
+    -fx-tick-label-fill: #6C7A89;
+
+    -fx-font-size: 11px;
+}
+
+.chart-horizontal-grid-lines {
+
+    -fx-stroke: #E4E9EE;
+}
+
+.chart-vertical-grid-lines {
+
+    -fx-stroke: transparent;
+}
+
+.default-color0.chart-bar {
+
+    -fx-bar-fill: #034F84;
+}
+
+
+/* ================================================================
+   38. REPORTES - INGRESOS TOTALES
+   ================================================================ */
+
+#cardTotalRevenue {
+
+    -fx-background-color:
+        linear-gradient(
+            to bottom right,
+            #FFFFFF,
+            #FFF5E6
+        );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #F0D3A3;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(230, 126, 34, 0.16),
+        14,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* ================================================================
+   39. SEPARADORES
+   ================================================================ */
+
+.separator .line {
+
+    -fx-border-color: #D6E0E7;
+
+    -fx-border-width: 1px 0 0 0;
+}
+
+
+/* ================================================================
+   40. ESTADOS DESHABILITADOS
+   ================================================================ */
+
+.button:disabled,
+.jfx-button:disabled {
+
+    -fx-opacity: 0.55;
+
+    -fx-cursor: default;
+
+    -fx-effect: none;
+}
