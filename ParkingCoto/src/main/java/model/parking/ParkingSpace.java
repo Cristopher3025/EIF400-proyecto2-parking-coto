@@ -1,77 +1,140 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.parking;
-
-import java.util.Objects;
 
 import enums.ParkingSpaceStatus;
 import enums.ParkingSpaceType;
-import exeption.IncompatibleParkingSpaceException;
-import exeption.ParkingException;
-import exeption.ParkingSpaceUnavailableException;
+import exception.IncompatibleParkingSpaceException;
+import exception.ParkingSpaceUnavailableException;
+
+import java.util.Objects;
+
 import model.vehicle.Vehicle;
 
 public class ParkingSpace {
 
-	private final String number;
-	private final ParkingSpaceType type;
-	private ParkingSpaceStatus status;
-	private Vehicle parkedVehicle;
+    private final String number;
+    private final ParkingSpaceType type;
 
-	public ParkingSpace(String number, ParkingSpaceType type) {
-		if (number == null || number.isBlank()) {
-			throw new IllegalArgumentException("Parking space number cannot be empty");
-		}
-		this.number = number.trim();
-		this.type = Objects.requireNonNull(type, "Parking space type cannot be null");
-		this.status = ParkingSpaceStatus.AVAILABLE;
-	}
+    private ParkingSpaceStatus status;
+    private Vehicle parkedVehicle;
 
-	public void park(Vehicle vehicle) {
-		Objects.requireNonNull(vehicle, "Vehicle cannot be null");
-		if (status != ParkingSpaceStatus.AVAILABLE) {
-			throw new ParkingSpaceUnavailableException("Parking space is not available: " + number);
-		}
-		if (vehicle.getRequiredSpaceType() != type) {
-			throw new IncompatibleParkingSpaceException(
-					"Vehicle is incompatible with parking space " + number);
-		}
-		parkedVehicle = vehicle;
-		status = ParkingSpaceStatus.OCCUPIED;
-	}
+    public ParkingSpace(
+            String number,
+            ParkingSpaceType type) {
 
-	public Vehicle release() {
-		if (status != ParkingSpaceStatus.OCCUPIED) {
-			throw new ParkingException("Parking space is not occupied: " + number);
-		}
-		Vehicle vehicle = parkedVehicle;
-		parkedVehicle = null;
-		status = ParkingSpaceStatus.AVAILABLE;
-		return vehicle;
-	}
+        this.number = validateNumber(number);
 
-	public void markOutOfService() {
-		if (status == ParkingSpaceStatus.OCCUPIED) {
-			throw new ParkingException("Occupied parking space cannot be taken out of service");
-		}
-		status = ParkingSpaceStatus.OUT_OF_SERVICE;
-	}
+        this.type = Objects.requireNonNull(
+                type,
+                "Parking space type cannot be null"
+        );
 
-	public String getNumber() {
-		return number;
-	}
+        this.status = ParkingSpaceStatus.AVAILABLE;
+    }
 
-	public ParkingSpaceType getType() {
-		return type;
-	}
+    public void park(Vehicle vehicle) {
 
-	public ParkingSpaceStatus getStatus() {
-		return status;
-	}
+        Objects.requireNonNull(
+                vehicle,
+                "Vehicle cannot be null"
+        );
 
-	public Vehicle getParkedVehicle() {
-		return parkedVehicle;
-	}
+        if (status != ParkingSpaceStatus.AVAILABLE) {
+            throw new ParkingSpaceUnavailableException(
+                    "Parking space "
+                    + number
+                    + " is not available"
+            );
+        }
+
+        if (vehicle.getRequiredSpaceType() != type) {
+            throw new IncompatibleParkingSpaceException(
+                    "Vehicle "
+                    + vehicle.getLicensePlate()
+                    + " is not compatible with parking space "
+                    + number
+            );
+        }
+
+        parkedVehicle = vehicle;
+        status = ParkingSpaceStatus.OCCUPIED;
+    }
+
+    public void release() {
+
+        if (status != ParkingSpaceStatus.OCCUPIED) {
+            throw new ParkingSpaceUnavailableException(
+                    "Only an occupied parking space can be released"
+            );
+        }
+
+        parkedVehicle = null;
+        status = ParkingSpaceStatus.AVAILABLE;
+    }
+
+    public void markOutOfService() {
+
+        if (status == ParkingSpaceStatus.OCCUPIED) {
+            throw new ParkingSpaceUnavailableException(
+                    "An occupied parking space cannot be marked out of service"
+            );
+        }
+
+        if (status == ParkingSpaceStatus.OUT_OF_SERVICE) {
+            throw new ParkingSpaceUnavailableException(
+                    "Parking space is already out of service"
+            );
+        }
+
+        status = ParkingSpaceStatus.OUT_OF_SERVICE;
+    }
+
+    public void restoreService() {
+
+        if (status != ParkingSpaceStatus.OUT_OF_SERVICE) {
+            throw new ParkingSpaceUnavailableException(
+                    "Only an out-of-service parking space can be restored"
+            );
+        }
+
+        status = ParkingSpaceStatus.AVAILABLE;
+    }
+
+    private String validateNumber(String number) {
+
+        if (number == null || number.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Parking space number cannot be empty"
+            );
+        }
+
+        return number.trim().toUpperCase();
+    }
+
+    public boolean isAvailable() {
+        return status == ParkingSpaceStatus.AVAILABLE;
+    }
+
+    public boolean isOccupied() {
+        return status == ParkingSpaceStatus.OCCUPIED;
+    }
+
+    public boolean isOutOfService() {
+        return status == ParkingSpaceStatus.OUT_OF_SERVICE;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public ParkingSpaceType getType() {
+        return type;
+    }
+
+    public ParkingSpaceStatus getStatus() {
+        return status;
+    }
+
+    public Vehicle getParkedVehicle() {
+        return parkedVehicle;
+    }
 }

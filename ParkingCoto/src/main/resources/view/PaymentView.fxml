@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentViewController">
-	<VBox spacing="12.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-		<Label text="Payment" />
-		<TextField fx:id="ticketIdField" promptText="Ticket ID" />
-		<ChoiceBox fx:id="paymentTypeChoiceBox" />
-		<Button mnemonicParsing="false" onAction="#processPayment" text="Process Payment" />
-		<Label fx:id="paymentDetailsLabel" />
-		<Label fx:id="messageLabel" />
-	</VBox>
+<AnchorPane id="AnchorPane" fx:id="AP_PAYMENT" prefHeight="540.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentViewController">
+   <children>
+      <AnchorPane prefHeight="540.0" prefWidth="367.0">
+         <children>
+            <Label layoutX="108.0" layoutY="8.0" prefHeight="32.0" prefWidth="152.0" text="Datos del ticket">
+               <font>
+                  <Font name="Trebuchet MS" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="TF_SEARCH_TICKET" layoutX="102.0" layoutY="55.0" prefHeight="25.0" prefWidth="207.0" promptText="Buscar ticket" />
+            <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="61.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/3844432-magnifier-search-zoom_110300.png" />
+               </image>
+            </ImageView>
+            <JFXTextArea layoutX="58.0" layoutY="99.0" prefHeight="14.0" prefWidth="65.0" text="Placa:" />
+            <JFXTextArea layoutX="58.0" layoutY="171.0" prefHeight="32.0" prefWidth="65.0" text="Espacio:" />
+            <JFXTextArea layoutX="58.0" layoutY="239.0" prefHeight="32.0" prefWidth="65.0" text="Tipo:" />
+            <JFXTextArea layoutX="58.0" layoutY="312.0" prefHeight="32.0" prefWidth="65.0" text="Entrada:" />
+            <JFXTextArea fx:id="TA_PLATE" editable="false" layoutX="196.0" layoutY="99.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea fx:id="TA_SPACE" editable="false" layoutX="196.0" layoutY="171.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea fx:id="TA_TYPE" editable="false" layoutX="196.0" layoutY="239.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea fx:id="TA_ENTRY_DATE" editable="false" layoutX="196.0" layoutY="312.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea layoutX="56.0" layoutY="379.0" prefHeight="32.0" prefWidth="65.0" text="Salida:" />
+            <JFXTextArea fx:id="TA_EXIT_DATE" editable="false" layoutX="194.0" layoutY="379.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea layoutX="57.0" layoutY="439.0" prefHeight="41.0" prefWidth="65.0" text="Monto apagar:" />
+            <JFXTextArea fx:id="TA_AMOUNT_PAID" editable="false" layoutX="195.0" layoutY="439.0" prefHeight="32.0" prefWidth="116.0" />
+            <JFXTextArea layoutX="57.0" layoutY="494.0" prefHeight="32.0" prefWidth="65.0" text="Estado:" />
+            <JFXTextArea fx:id="TA_STATE" editable="false" layoutX="195.0" layoutY="494.0" prefHeight="32.0" prefWidth="116.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="367.0" prefHeight="540.0" prefWidth="578.0">
+         <children>
+            <Label layoutX="199.0" layoutY="14.0" prefHeight="58.0" prefWidth="181.0" text="Datos del pago">
+               <font>
+                  <Font name="Trebuchet MS" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="BTN_PROCESS_PAYMENT" layoutX="213.0" layoutY="313.0" onAction="#RecordPayment" prefHeight="105.0" prefWidth="152.0" text="Procesar Pago" />
+            <MFXComboBox fx:id="CB_TYPE_PAYMENT" layoutX="155.0" layoutY="186.0" prefHeight="23.0" prefWidth="269.0" promptText="Seleccionar tipo de pago" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

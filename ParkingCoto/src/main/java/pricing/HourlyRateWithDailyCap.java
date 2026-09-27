@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Objects;
 
-/**
- *
- * @author Justin PC
- */
-public class HourlyRateWithDailyCap implements PricingPolicy {
+public class HourlyRateWithDailyCap
+        implements PricingPolicy {
 
     private static final long MINUTES_PER_HOUR = 60;
+    private static final long HOURS_PER_DAY = 24;
     private static final long HOURS_FOR_DAILY_CAP = 10;
 
     private final BigDecimal hourlyRate;
@@ -20,36 +18,54 @@ public class HourlyRateWithDailyCap implements PricingPolicy {
             BigDecimal hourlyRate,
             BigDecimal dailyCap) {
 
-        this.hourlyRate = validatePositiveAmount(
-                hourlyRate,
-                "Hourly rate"
-        );
+        this.hourlyRate =
+                validatePositiveAmount(
+                        hourlyRate,
+                        "Hourly rate"
+                );
 
-        this.dailyCap = validatePositiveAmount(
-                dailyCap,
-                "Daily cap"
-        );
+        this.dailyCap =
+                validatePositiveAmount(
+                        dailyCap,
+                        "Daily cap"
+                );
     }
 
     @Override
-    public BigDecimal calculateAmount(Duration duration) {
+    public BigDecimal calculateAmount(
+            Duration duration) {
 
         validateDuration(duration);
 
-        long chargedHours = calculateChargedHours(duration);
+        long chargedHours =
+                calculateChargedHours(duration);
 
-        BigDecimal regularAmount = hourlyRate.multiply(
-                BigDecimal.valueOf(chargedHours)
-        );
+        long completeDays =
+                chargedHours / HOURS_PER_DAY;
 
-        if (chargedHours >= HOURS_FOR_DAILY_CAP) {
-            return regularAmount.min(dailyCap);
+        long remainingHours =
+                chargedHours % HOURS_PER_DAY;
+
+        BigDecimal total =
+                dailyCap.multiply(
+                        BigDecimal.valueOf(
+                                completeDays
+                        )
+                );
+
+        if (remainingHours > 0) {
+            total = total.add(
+                    calculatePeriodAmount(
+                            remainingHours
+                    )
+            );
         }
 
-        return regularAmount;
+        return total;
     }
 
-    public long calculateChargedHours(Duration duration) {
+    public long calculateChargedHours(
+            Duration duration) {
 
         validateDuration(duration);
 
@@ -63,15 +79,23 @@ public class HourlyRateWithDailyCap implements PricingPolicy {
                 / MINUTES_PER_HOUR;
     }
 
-    public BigDecimal getHourlyRate() {
-        return hourlyRate;
+    private BigDecimal calculatePeriodAmount(
+            long hours) {
+
+        BigDecimal regularAmount =
+                hourlyRate.multiply(
+                        BigDecimal.valueOf(hours)
+                );
+
+        if (hours >= HOURS_FOR_DAILY_CAP) {
+            return regularAmount.min(dailyCap);
+        }
+
+        return regularAmount;
     }
 
-    public BigDecimal getDailyCap() {
-        return dailyCap;
-    }
-
-    private void validateDuration(Duration duration) {
+    private void validateDuration(
+            Duration duration) {
 
         Objects.requireNonNull(
                 duration,
@@ -96,10 +120,19 @@ public class HourlyRateWithDailyCap implements PricingPolicy {
 
         if (amount.signum() <= 0) {
             throw new IllegalArgumentException(
-                    fieldName + " must be greater than zero"
+                    fieldName
+                    + " must be greater than zero"
             );
         }
 
         return amount;
+    }
+
+    public BigDecimal getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public BigDecimal getDailyCap() {
+        return dailyCap;
     }
 }
