@@ -36,33 +36,26 @@ public class EntryViewController implements Initializable {
     // =========================================================
     // SERVICES
     // =========================================================
-
     private final EntryService entryService;
     private final QueryService queryService;
-
 
     // =========================================================
     // DATE FORMAT
     // =========================================================
-
-    private static final DateTimeFormatter DATE_FORMAT =
-            DateTimeFormatter.ofPattern(
+    private static final DateTimeFormatter DATE_FORMAT
+            = DateTimeFormatter.ofPattern(
                     "dd/MM/yyyy HH:mm"
             );
-
 
     // =========================================================
     // MAIN CONTAINER
     // =========================================================
-
     @FXML
     private AnchorPane AP_ENTRY;
-
 
     // =========================================================
     // VEHICLE SEARCH
     // =========================================================
-
     @FXML
     private JFXTextField TF_SEARCH_PLATE;
 
@@ -81,11 +74,9 @@ public class EntryViewController implements Initializable {
     @FXML
     private JFXButton BTN_REGISTER;
 
-
     // =========================================================
     // ENTRY RESULT
     // =========================================================
-
     @FXML
     private AnchorPane AP_ENTRY_CORRECTED;
 
@@ -107,18 +98,14 @@ public class EntryViewController implements Initializable {
     @FXML
     private JFXTextArea TA_DATE;
 
-
     // =========================================================
     // CURRENT VEHICLE
     // =========================================================
-
     private Vehicle selectedVehicle;
-
 
     // =========================================================
     // CONSTRUCTOR
     // =========================================================
-
     public EntryViewController(
             ParkingContext context) {
 
@@ -127,18 +114,16 @@ public class EntryViewController implements Initializable {
                 "Parking context cannot be null"
         );
 
-        this.entryService =
-                context.getEntryService();
+        this.entryService
+                = context.getEntryService();
 
-        this.queryService =
-                context.getQueryService();
+        this.queryService
+                = context.getQueryService();
     }
-
 
     // =========================================================
     // INITIALIZATION
     // =========================================================
-
     @Override
     public void initialize(
             URL url,
@@ -153,21 +138,18 @@ public class EntryViewController implements Initializable {
         BTN_REGISTER.setDisable(true);
     }
 
-
     // =========================================================
     // VEHICLE SEARCH
     // =========================================================
-
     private void configureVehicleSearch() {
 
         TF_SEARCH_PLATE
                 .textProperty()
                 .addListener(
-                        (observable, oldValue, newValue) ->
-                                searchVehicle(newValue)
+                        (observable, oldValue, newValue)
+                        -> searchVehicle(newValue)
                 );
     }
-
 
     private void searchVehicle(
             String licensePlate) {
@@ -177,7 +159,6 @@ public class EntryViewController implements Initializable {
          * the previous entry result disappears.
          */
         clearEntryResult();
-
 
         if (licensePlate == null
                 || licensePlate.isBlank()) {
@@ -191,28 +172,23 @@ public class EntryViewController implements Initializable {
             return;
         }
 
-
         try {
 
-            Vehicle vehicle =
-                    queryService.findVehicle(
+            Vehicle vehicle
+                    = queryService.findVehicle(
                             licensePlate.trim()
                     );
 
-
-            selectedVehicle =
-                    vehicle;
-
+            selectedVehicle
+                    = vehicle;
 
             showVehicleInformation(
                     vehicle
             );
 
-
             BTN_REGISTER.setDisable(
                     false
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -220,12 +196,10 @@ public class EntryViewController implements Initializable {
              * While the user is typing the license plate,
              * it is normal that there is not yet an exact match.
              */
-            selectedVehicle =
-                    null;
-
+            selectedVehicle
+                    = null;
 
             clearVehicleInformation();
-
 
             BTN_REGISTER.setDisable(
                     true
@@ -233,11 +207,9 @@ public class EntryViewController implements Initializable {
         }
     }
 
-
     // =========================================================
     // SHOW VEHICLE INFORMATION
     // =========================================================
-
     private void showVehicleInformation(
             Vehicle vehicle) {
 
@@ -268,11 +240,9 @@ public class EntryViewController implements Initializable {
         animateVehicleInformation();
     }
 
-
     // =========================================================
     // VEHICLE INFORMATION ANIMATION
     // =========================================================
-
     private void animateVehicleInformation() {
 
         animateFadeOnly(
@@ -296,11 +266,9 @@ public class EntryViewController implements Initializable {
         );
     }
 
-
     // =========================================================
     // REGISTER ENTRY
     // =========================================================
-
     @FXML
     private void RegisterEntry(
             ActionEvent event) {
@@ -315,42 +283,34 @@ public class EntryViewController implements Initializable {
             return;
         }
 
-
         try {
 
             // =================================================
             // REGISTER ENTRY
             // =================================================
-
-            ParkingTicket ticket =
-                    entryService.registerEntry(
+            ParkingTicket ticket
+                    = entryService.registerEntry(
                             selectedVehicle
                                     .getLicensePlate()
                     );
 
-
             // =================================================
             // PUT INFORMATION IN CONTROLS
             // =================================================
-
             showEntryResult(
                     ticket
             );
 
-
             // =================================================
             // SUCCESS MESSAGE
             // =================================================
-
             LBL_CORRECT_ENTRY.setText(
                     "Ingreso registrado correctamente"
             );
 
-
             // =================================================
             // MAKE CARD AVAILABLE
             // =================================================
-
             AP_ENTRY_CORRECTED.setManaged(
                     true
             );
@@ -359,22 +319,17 @@ public class EntryViewController implements Initializable {
                     true
             );
 
-
             // =================================================
             // CINEMATIC RESULT ANIMATION
             // =================================================
-
             animateEntryResult();
-
 
             // =================================================
             // PREVENT DUPLICATE ENTRY
             // =================================================
-
             BTN_REGISTER.setDisable(
                     true
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -387,11 +342,9 @@ public class EntryViewController implements Initializable {
         }
     }
 
-
     // =========================================================
     // CINEMATIC ENTRY RESULT
     // =========================================================
-
     private void animateEntryResult() {
 
         /*
@@ -422,89 +375,73 @@ public class EntryViewController implements Initializable {
                 0.0
         );
 
-
         // =====================================================
         // 1. GREEN SUCCESS CARD
         // =====================================================
-
-        ParallelTransition successCard =
-                createFadeAndSlide(
+        ParallelTransition successCard
+                = createFadeAndSlide(
                         AP_ENTRY_CORRECTED,
                         450
                 );
 
-
         // =====================================================
         // SMALL CINEMATIC PAUSE
         // =====================================================
-
-        PauseTransition pauseAfterSuccess =
-                new PauseTransition(
+        PauseTransition pauseAfterSuccess
+                = new PauseTransition(
                         Duration.millis(100)
                 );
-
 
         // =====================================================
         // 2. TICKET
         // =====================================================
-
-        ParallelTransition ticketAnimation =
-                createFadeAndSlide(
+        ParallelTransition ticketAnimation
+                = createFadeAndSlide(
                         TA_TICKET,
                         300
                 );
 
-
         // =====================================================
         // 3. PLATE
         // =====================================================
-
-        ParallelTransition plateAnimation =
-                createFadeAndSlide(
+        ParallelTransition plateAnimation
+                = createFadeAndSlide(
                         TA_PLATE,
                         300
                 );
 
-
         // =====================================================
         // 4. PARKING SPACE
         // =====================================================
-
-        ParallelTransition spaceAnimation =
-                createFadeAndSlide(
+        ParallelTransition spaceAnimation
+                = createFadeAndSlide(
                         TA_ALLOCATED_SPACE,
                         300
                 );
 
-
         // =====================================================
         // 5. SPACE TYPE
         // =====================================================
-
-        ParallelTransition typeAnimation =
-                createFadeAndSlide(
+        ParallelTransition typeAnimation
+                = createFadeAndSlide(
                         TA_TYPE_SPACE,
                         300
                 );
 
-
         // =====================================================
         // 6. DATE
         // =====================================================
-
-        ParallelTransition dateAnimation =
-                createFadeAndSlide(
+        ParallelTransition dateAnimation
+                = createFadeAndSlide(
                         TA_DATE,
                         300
                 );
 
-
         // =====================================================
         // COMPLETE SEQUENCE
         // =====================================================
-
-        SequentialTransition sequence =
-                new SequentialTransition(
+        SequentialTransition sequence
+                = new SequentialTransition(
                         successCard,
                         pauseAfterSuccess,
                         ticketAnimation,
@@ -514,15 +451,12 @@ public class EntryViewController implements Initializable {
                         dateAnimation
                 );
 
-
         sequence.play();
     }
-
 
     // =========================================================
     // FADE + SMALL SLIDE
     // =========================================================
-
     private ParallelTransition createFadeAndSlide(
             Node node,
             double duration) {
@@ -541,17 +475,14 @@ public class EntryViewController implements Initializable {
                 6.0
         );
 
-
         // =====================================================
         // FADE
         // =====================================================
-
-        FadeTransition fade =
-                new FadeTransition(
+        FadeTransition fade
+                = new FadeTransition(
                         Duration.millis(duration),
                         node
                 );
-
 
         fade.setFromValue(
                 0.0
@@ -561,17 +492,14 @@ public class EntryViewController implements Initializable {
                 1.0
         );
 
-
         // =====================================================
         // MOVEMENT
         // =====================================================
-
-        TranslateTransition movement =
-                new TranslateTransition(
+        TranslateTransition movement
+                = new TranslateTransition(
                         Duration.millis(duration),
                         node
                 );
-
 
         movement.setFromY(
                 6.0
@@ -581,18 +509,15 @@ public class EntryViewController implements Initializable {
                 0.0
         );
 
-
         return new ParallelTransition(
                 fade,
                 movement
         );
     }
 
-
     // =========================================================
     // SIMPLE FADE
     // =========================================================
-
     private void animateFadeOnly(
             Node node,
             double duration) {
@@ -601,13 +526,11 @@ public class EntryViewController implements Initializable {
                 0.0
         );
 
-
-        FadeTransition fade =
-                new FadeTransition(
+        FadeTransition fade
+                = new FadeTransition(
                         Duration.millis(duration),
                         node
                 );
-
 
         fade.setFromValue(
                 0.0
@@ -617,66 +540,53 @@ public class EntryViewController implements Initializable {
                 1.0
         );
 
-
         fade.play();
     }
-
 
     // =========================================================
     // SHOW ENTRY RESULT
     // =========================================================
-
     private void showEntryResult(
             ParkingTicket ticket) {
 
-        ParkingSpace parkingSpace =
-                ticket.getParkingSpace();
-
+        ParkingSpace parkingSpace
+                = ticket.getParkingSpace();
 
         // =====================================================
         // TICKET ID
         // =====================================================
-
         TA_TICKET.setText(
                 ticket.getId()
         );
 
-
         // =====================================================
         // LICENSE PLATE
         // =====================================================
-
         TA_PLATE.setText(
                 ticket
                         .getVehicle()
                         .getLicensePlate()
         );
 
-
         // =====================================================
         // ALLOCATED PARKING SPACE
         // =====================================================
-
         TA_ALLOCATED_SPACE.setText(
                 parkingSpace.getNumber()
         );
 
-
         // =====================================================
         // PARKING SPACE TYPE
         // =====================================================
-
         TA_TYPE_SPACE.setText(
                 getParkingSpaceTypeName(
                         parkingSpace
                 )
         );
 
-
         // =====================================================
         // ENTRY DATE AND TIME
         // =====================================================
-
         TA_DATE.setText(
                 ticket
                         .getEntryTime()
@@ -686,11 +596,9 @@ public class EntryViewController implements Initializable {
         );
     }
 
-
     // =========================================================
     // VEHICLE TYPE
     // =========================================================
-
     private String getVehicleTypeName(
             Vehicle vehicle) {
 
@@ -700,16 +608,13 @@ public class EntryViewController implements Initializable {
 
                 return "Automóvil";
 
-
             case MOTORCYCLE:
 
                 return "Motocicleta";
 
-
             case CARGO:
 
                 return "Vehículo de carga";
-
 
             default:
 
@@ -717,11 +622,9 @@ public class EntryViewController implements Initializable {
         }
     }
 
-
     // =========================================================
     // PARKING SPACE TYPE
     // =========================================================
-
     private String getParkingSpaceTypeName(
             ParkingSpace parkingSpace) {
 
@@ -731,16 +634,13 @@ public class EntryViewController implements Initializable {
 
                 return "Automóvil";
 
-
             case MOTORCYCLE:
 
                 return "Motocicleta";
 
-
             case CARGO:
 
                 return "Vehículo de carga";
-
 
             default:
 
@@ -748,11 +648,9 @@ public class EntryViewController implements Initializable {
         }
     }
 
-
     // =========================================================
     // CLEAR VEHICLE INFORMATION
     // =========================================================
-
     private void clearVehicleInformation() {
 
         TA_BRAND.clear();
@@ -786,17 +684,14 @@ public class EntryViewController implements Initializable {
         );
     }
 
-
     // =========================================================
     // CLEAR ENTRY RESULT
     // =========================================================
-
     private void clearEntryResult() {
 
         // =====================================================
         // HIDE SUCCESS CARD
         // =====================================================
-
         AP_ENTRY_CORRECTED.setVisible(
                 false
         );
@@ -820,20 +715,16 @@ public class EntryViewController implements Initializable {
                 0.0
         );
 
-
         // =====================================================
         // CLEAR MESSAGE
         // =====================================================
-
         LBL_CORRECT_ENTRY.setText(
                 ""
         );
 
-
         // =====================================================
         // CLEAR RESULT
         // =====================================================
-
         TA_TICKET.clear();
 
         TA_PLATE.clear();
@@ -844,11 +735,9 @@ public class EntryViewController implements Initializable {
 
         TA_DATE.clear();
 
-
         // =====================================================
         // RESTORE VISUAL STATE
         // =====================================================
-
         resetNode(
                 TA_TICKET
         );
@@ -870,11 +759,9 @@ public class EntryViewController implements Initializable {
         );
     }
 
-
     // =========================================================
     // RESET NODE
     // =========================================================
-
     private void resetNode(
             Node node) {
 
@@ -891,37 +778,31 @@ public class EntryViewController implements Initializable {
         );
     }
 
-
     // =========================================================
     // MESSAGES
     // =========================================================
-
     private void showError(
             String title,
             String message) {
 
-        Alert alert =
-                new Alert(
+        Alert alert
+                = new Alert(
                         Alert.AlertType.ERROR
                 );
-
 
         alert.setTitle(
                 "Parking Coto"
         );
 
-
         alert.setHeaderText(
                 title
         );
-
 
         alert.setContentText(
                 message != null
                         ? message
                         : "Ha ocurrido un error inesperado."
         );
-
 
         alert.showAndWait();
     }
