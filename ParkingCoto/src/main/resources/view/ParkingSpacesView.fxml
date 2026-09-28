@@ -20,7 +20,7 @@
         <!-- REGISTRATION AREA                                 -->
         <!-- ================================================= -->
 
-        <AnchorPane id="cardRegisterSpace" layoutX="14.0" layoutY="44.0" prefHeight="482.0" prefWidth="347.0">
+        <AnchorPane id="cardRegisterSpace" layoutY="6.0" prefHeight="526.0" prefWidth="355.0">
 
             <children>
 
@@ -54,7 +54,7 @@
         <!-- REGISTERED PARKING SPACES                         -->
         <!-- ================================================= -->
 
-        <AnchorPane layoutX="367.0" layoutY="44.0" prefHeight="482.0" prefWidth="578.0">
+        <AnchorPane layoutX="361.0" prefHeight="526.0" prefWidth="578.0">
 
             <children>
 
@@ -86,7 +86,7 @@
 
                 <!-- TABLE -->
 
-                <TableView id="cardInformationSpaces" fx:id="TV_PARKING_SPACES" layoutY="153.0" prefHeight="329.0" prefWidth="578.0">
+                <TableView id="cardInformationSpaces" fx:id="TV_PARKING_SPACES" layoutY="153.0" prefHeight="379.0" prefWidth="578.0">
 
                     <columns>
 

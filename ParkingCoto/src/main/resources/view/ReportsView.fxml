@@ -68,7 +68,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane id="cardOccupancyBySpaceType" layoutX="15.0" layoutY="253.0" prefHeight="257.0" prefWidth="593.0">
+      <AnchorPane id="cardOccupancyBySpaceType" layoutX="1.0" layoutY="253.0" prefHeight="277.0" prefWidth="607.0">
          <children>
             <BarChart fx:id="BC_TYPE_SPACE" layoutX="14.0" layoutY="10.0" prefHeight="265.0" prefWidth="564.0" title="Ocupacion por tipo de espacio">
               <xAxis>
@@ -80,7 +80,7 @@
             </BarChart>
          </children>
       </AnchorPane>
-      <AnchorPane id="cardTotañTicketsActive" layoutX="249.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0" stylesheets="@../css/parking-coto.css">
+      <AnchorPane id="cardTotalTicketsActive" layoutX="249.0" layoutY="96.0" prefHeight="127.0" prefWidth="214.0" stylesheets="@../css/parking-coto.css">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Tickets activos">
                <font>
