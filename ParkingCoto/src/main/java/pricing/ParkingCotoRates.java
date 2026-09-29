@@ -2,10 +2,6 @@ package pricing;
 
 import java.math.BigDecimal;
 
-/**
- *
- * @author Justin PC
- */
 public final class ParkingCotoRates {
 
     private ParkingCotoRates() {

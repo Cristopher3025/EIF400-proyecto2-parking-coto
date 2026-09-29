@@ -33,36 +33,17 @@ import service.ParkingContext;
 
 public class TicketsViewController implements Initializable {
 
-    // =========================================================
-    // CONTEXT
-    // =========================================================
-
     private final ParkingContext context;
-
-
-    // =========================================================
-    // DATA
-    // =========================================================
 
     private final ObservableList<ParkingTicket> tickets =
             FXCollections.observableArrayList();
 
     private FilteredList<ParkingTicket> filteredTickets;
 
-
-    // =========================================================
-    // FORMAT
-    // =========================================================
-
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern(
                     "dd/MM/yyyy HH:mm"
             );
-
-
-    // =========================================================
-    // FXML
-    // =========================================================
 
     @FXML
     private AnchorPane AP_TICKETS_VIEW;
@@ -94,11 +75,6 @@ public class TicketsViewController implements Initializable {
     @FXML
     private JFXTextField TF_SEARCH_TICKER_OR_PLATE;
 
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
-
     public TicketsViewController(
             ParkingContext context) {
 
@@ -108,11 +84,6 @@ public class TicketsViewController implements Initializable {
                         "Parking context cannot be null"
                 );
     }
-
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
 
     @Override
     public void initialize(
@@ -130,16 +101,7 @@ public class TicketsViewController implements Initializable {
         animateTableEntrance();
     }
 
-
-    // =========================================================
-    // CONFIGURE TABLE
-    // =========================================================
-
     private void configureTable() {
-
-        // =====================================================
-        // TICKET ID
-        // =====================================================
 
         TV_RW_TICKET.setCellValueFactory(data ->
                 new SimpleStringProperty(
@@ -147,11 +109,6 @@ public class TicketsViewController implements Initializable {
                                 .getId()
                 )
         );
-
-
-        // =====================================================
-        // LICENSE PLATE
-        // =====================================================
 
         TV_RW_PLATE.setCellValueFactory(data ->
                 new SimpleStringProperty(
@@ -161,11 +118,6 @@ public class TicketsViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // PARKING SPACE
-        // =====================================================
-
         TV_RW_SPACE.setCellValueFactory(data ->
                 new SimpleStringProperty(
                         data.getValue()
@@ -174,11 +126,6 @@ public class TicketsViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // VEHICLE TYPE
-        // =====================================================
-
         TV_RW_TYPE_VEHICLE.setCellValueFactory(data ->
                 new SimpleStringProperty(
                         getVehicleTypeName(
@@ -186,11 +133,6 @@ public class TicketsViewController implements Initializable {
                         )
                 )
         );
-
-
-        // =====================================================
-        // ENTRY TIME
-        // =====================================================
 
         TV_RW_ENTRY.setCellValueFactory(data ->
                 new SimpleStringProperty(
@@ -201,11 +143,6 @@ public class TicketsViewController implements Initializable {
                                 )
                 )
         );
-
-
-        // =====================================================
-        // EXIT TIME
-        // =====================================================
 
         TV_RW_EXIT.setCellValueFactory(data -> {
 
@@ -226,11 +163,6 @@ public class TicketsViewController implements Initializable {
             );
         });
 
-
-        // =====================================================
-        // STATUS
-        // =====================================================
-
         TV_RW_STATE_PAYMENT.setCellValueFactory(data ->
                 new SimpleStringProperty(
                         getTicketStatusName(
@@ -240,11 +172,6 @@ public class TicketsViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // SEARCH
-    // =========================================================
-
     private void configureSearch() {
 
         filteredTickets =
@@ -253,11 +180,9 @@ public class TicketsViewController implements Initializable {
                         ticket -> true
                 );
 
-
         TV_TICKET_MANAGEMENT.setItems(
                 filteredTickets
         );
-
 
         TF_SEARCH_TICKER_OR_PLATE
                 .textProperty()
@@ -270,19 +195,10 @@ public class TicketsViewController implements Initializable {
                                     newValue
                             );
 
-                            /*
-                             * Small fade whenever the search
-                             * changes the visible results.
-                             */
                             animateSearchResult();
                         }
                 );
     }
-
-
-    // =========================================================
-    // FILTER TICKETS
-    // =========================================================
 
     private void filterTickets(
             String searchText) {
@@ -297,12 +213,10 @@ public class TicketsViewController implements Initializable {
             return;
         }
 
-
         String search =
                 searchText
                         .trim()
                         .toLowerCase();
-
 
         filteredTickets.setPredicate(ticket -> {
 
@@ -310,22 +224,15 @@ public class TicketsViewController implements Initializable {
                     ticket.getId()
                             .toLowerCase();
 
-
             String licensePlate =
                     ticket.getVehicle()
                             .getLicensePlate()
                             .toLowerCase();
 
-
             return ticketId.contains(search)
                     || licensePlate.contains(search);
         });
     }
-
-
-    // =========================================================
-    // REFRESH
-    // =========================================================
 
     private void refresh() {
 
@@ -336,11 +243,6 @@ public class TicketsViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // ROW ANIMATION
-    // =========================================================
-
     private void configureRowAnimation() {
 
         TV_TICKET_MANAGEMENT.setRowFactory(
@@ -348,7 +250,6 @@ public class TicketsViewController implements Initializable {
 
                     TableRow<ParkingTicket> row =
                             new TableRow<>();
-
 
                     row.itemProperty()
                             .addListener(
@@ -369,30 +270,19 @@ public class TicketsViewController implements Initializable {
                                             return;
                                         }
 
-
                                         animateRow(
                                                 row
                                         );
                                     }
                             );
 
-
                     return row;
                 }
         );
     }
 
-
-    // =========================================================
-    // ANIMATE INDIVIDUAL ROW
-    // =========================================================
-
     private void animateRow(
             TableRow<ParkingTicket> row) {
-
-        // =====================================================
-        // INITIAL STATE
-        // =====================================================
 
         row.setOpacity(
                 0.0
@@ -401,11 +291,6 @@ public class TicketsViewController implements Initializable {
         row.setTranslateX(
                 15.0
         );
-
-
-        // =====================================================
-        // FADE
-        // =====================================================
 
         FadeTransition fade =
                 new FadeTransition(
@@ -422,11 +307,6 @@ public class TicketsViewController implements Initializable {
         fade.setToValue(
                 1.0
         );
-
-
-        // =====================================================
-        // MOVEMENT
-        // =====================================================
 
         TranslateTransition movement =
                 new TranslateTransition(
@@ -444,16 +324,10 @@ public class TicketsViewController implements Initializable {
                 0.0
         );
 
-
         fade.play();
 
         movement.play();
     }
-
-
-    // =========================================================
-    // TABLE ENTRANCE
-    // =========================================================
 
     private void animateTableEntrance() {
 
@@ -465,22 +339,12 @@ public class TicketsViewController implements Initializable {
                 12.0
         );
 
-
-        // =====================================================
-        // SMALL INITIAL PAUSE
-        // =====================================================
-
         PauseTransition pause =
                 new PauseTransition(
                         javafx.util.Duration.millis(
                                 100
                         )
                 );
-
-
-        // =====================================================
-        // FADE
-        // =====================================================
 
         FadeTransition fade =
                 new FadeTransition(
@@ -497,11 +361,6 @@ public class TicketsViewController implements Initializable {
         fade.setToValue(
                 1.0
         );
-
-
-        // =====================================================
-        // MOVEMENT
-        // =====================================================
 
         TranslateTransition movement =
                 new TranslateTransition(
@@ -519,11 +378,6 @@ public class TicketsViewController implements Initializable {
                 0.0
         );
 
-
-        // =====================================================
-        // RUN
-        // =====================================================
-
         pause.setOnFinished(
                 event -> {
 
@@ -533,14 +387,8 @@ public class TicketsViewController implements Initializable {
                 }
         );
 
-
         pause.play();
     }
-
-
-    // =========================================================
-    // SEARCH RESULT ANIMATION
-    // =========================================================
 
     private void animateSearchResult() {
 
@@ -552,7 +400,6 @@ public class TicketsViewController implements Initializable {
                         TV_TICKET_MANAGEMENT
                 );
 
-
         fade.setFromValue(
                 0.65
         );
@@ -561,14 +408,8 @@ public class TicketsViewController implements Initializable {
                 1.0
         );
 
-
         fade.playFromStart();
     }
-
-
-    // =========================================================
-    // VEHICLE TYPE
-    // =========================================================
 
     private String getVehicleTypeName(
             ParkingTicket ticket) {
@@ -579,29 +420,21 @@ public class TicketsViewController implements Initializable {
 
             case CAR:
 
-                return "Automóvil";
-
+                return "Autom├│vil";
 
             case MOTORCYCLE:
 
                 return "Motocicleta";
 
-
             case CARGO:
 
-                return "Vehículo de carga";
-
+                return "Veh├¡culo de carga";
 
             default:
 
                 return "Desconocido";
         }
     }
-
-
-    // =========================================================
-    // TICKET STATUS
-    // =========================================================
 
     private String getTicketStatusName(
             ParkingTicket ticket) {
@@ -612,16 +445,13 @@ public class TicketsViewController implements Initializable {
 
                 return "Activo";
 
-
             case CLOSED:
 
                 return "Cerrado";
 
-
             case PAID:
 
                 return "Pagado";
-
 
             default:
 

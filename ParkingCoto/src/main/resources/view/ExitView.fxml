@@ -13,10 +13,6 @@
 
     <children>
 
-        <!-- ================================================= -->
-        <!-- TICKET INFORMATION                                -->
-        <!-- ================================================= -->
-
         <AnchorPane id="cardDataTicket" layoutX="1.0" layoutY="6.0" prefHeight="526.0" prefWidth="366.0">
 
             <children>
@@ -62,10 +58,6 @@
             </children>
 
         </AnchorPane>
-
-        <!-- ================================================= -->
-        <!-- EXIT RESULT                                       -->
-        <!-- ================================================= -->
 
         <AnchorPane id="cardResultExit" layoutX="374.0" layoutY="8.0" prefHeight="532.0" prefWidth="570.0">
 

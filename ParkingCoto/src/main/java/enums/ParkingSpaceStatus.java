@@ -1,9 +1,5 @@
 package enums;
 
-/**
- *
- * @author Justin PC
- */
 public enum ParkingSpaceStatus {
     AVAILABLE,
     OCCUPIED,

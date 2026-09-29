@@ -83,11 +83,6 @@ public class PaymentService {
                         LocalDateTime.now(clock)
                 );
 
-        /*
-         * First register the payment.
-         * Only after successful registration
-         * do we change the ticket state.
-         */
         parkingLot.registerPayment(payment);
 
         ticket.markAsPaid();

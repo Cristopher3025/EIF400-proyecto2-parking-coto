@@ -52,9 +52,6 @@ public class ParkingLot {
         this.paymentsById = new LinkedHashMap<>();
     }
 
-    // =================================================
-    // REGISTRATION
-    // =================================================
     public void registerParkingSpace(
             ParkingSpace parkingSpace) {
 
@@ -99,9 +96,6 @@ public class ParkingLot {
         }
     }
 
-    // =================================================
-    // ENTRY
-    // =================================================
     public ParkingTicket enterVehicle(
             String licensePlate) {
 
@@ -148,9 +142,6 @@ public class ParkingLot {
         return ticket;
     }
 
-    // =================================================
-    // EXIT
-    // =================================================
     public ParkingTicket closeTicket(
             String ticketId,
             LocalDateTime exitTime) {
@@ -163,19 +154,8 @@ public class ParkingLot {
         ParkingTicket ticket
                 = findActiveTicket(ticketId);
 
-        /*
-         * The ticket must be successfully closed before
-         * changing the state of the parking space.
-         *
-         * If close() fails, the space remains occupied
-         * and the ticket remains active.
-         */
         ticket.close(exitTime);
 
-        /*
-         * At this point the vehicle has successfully
-         * registered its exit from the parking lot.
-         */
         ticket.getParkingSpace().release();
 
         activeTicketsById.remove(
@@ -185,9 +165,6 @@ public class ParkingLot {
         return ticket;
     }
 
-    // =================================================
-    // PAYMENTS
-    // =================================================
     public void registerPayment(
             Payment payment) {
 
@@ -224,9 +201,6 @@ public class ParkingLot {
                 );
     }
 
-    // =================================================
-    // SEARCH
-    // =================================================
     public Vehicle findVehicle(
             String licensePlate) {
 
@@ -343,9 +317,6 @@ public class ParkingLot {
         return ticket;
     }
 
-    // =================================================
-    // READ-ONLY COLLECTIONS
-    // =================================================
     public List<Vehicle> getVehicles() {
 
         return Collections.unmodifiableList(
@@ -395,9 +366,6 @@ public class ParkingLot {
         );
     }
 
-    // =================================================
-    // INTERNAL DOMAIN OPERATIONS
-    // =================================================
     private ParkingSpace findAvailableSpace(
             ParkingSpaceType type) {
 

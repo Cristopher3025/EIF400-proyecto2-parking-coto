@@ -36,16 +36,7 @@ import service.QueryService;
 
 public class ReportsViewController {
 
-    // =========================================================
-    // CONTEXT
-    // =========================================================
-
     private final ParkingContext context;
-
-
-    // =========================================================
-    // FXML
-    // =========================================================
 
     @FXML
     private AnchorPane AP_REPORTS;
@@ -68,11 +59,6 @@ public class ReportsViewController {
     @FXML
     private BarChart<String, Number> BC_TYPE_SPACE;
 
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
-
     public ReportsViewController(
             ParkingContext context) {
 
@@ -83,51 +69,25 @@ public class ReportsViewController {
                 );
     }
 
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
-
     @FXML
     private void initialize() {
 
-        /*
-         * We disable JavaFX's default chart animation because
-         * we are going to create our own animation.
-         */
         BC_TYPE_SPACE.setAnimated(false);
 
         BC_TYPE_SPACE.setLegendVisible(false);
 
-        /*
-         * Load all current information.
-         */
         refresh();
 
-        /*
-         * Animate the report after loading.
-         */
         animateReport();
     }
-
-
-    // =========================================================
-    // REFRESH REPORT
-    // =========================================================
 
     private void refresh() {
 
         QueryService queryService =
                 context.getQueryService();
 
-
         List<ParkingTicket> tickets =
                 queryService.getTickets();
-
-
-        // =====================================================
-        // TOTAL TICKETS
-        // =====================================================
 
         LBL_TOTAL_TICKETS.setText(
                 String.valueOf(
@@ -135,22 +95,12 @@ public class ReportsViewController {
                 )
         );
 
-
-        // =====================================================
-        // ACTIVE TICKETS
-        // =====================================================
-
         LBL_TOTAL_TICKETS_ACTIVE.setText(
                 String.valueOf(
                         queryService
                                 .getActiveTicketCount()
                 )
         );
-
-
-        // =====================================================
-        // CLOSED TICKETS
-        // =====================================================
 
         long closedTickets =
                 tickets.stream()
@@ -160,17 +110,11 @@ public class ReportsViewController {
                         )
                         .count();
 
-
         LBL_TOTAL_TICKETS_CLOSE.setText(
                 String.valueOf(
                         closedTickets
                 )
         );
-
-
-        // =====================================================
-        // PAID TICKETS
-        // =====================================================
 
         long paidTickets =
                 tickets.stream()
@@ -180,52 +124,30 @@ public class ReportsViewController {
                         )
                         .count();
 
-
         LBL_TOTAL_TICKETS_PAYMENT.setText(
                 String.valueOf(
                         paidTickets
                 )
         );
 
-
-        // =====================================================
-        // TOTAL REVENUE
-        // =====================================================
-
         LBL_TOTAL_REVENUE.setText(
-                "₡ "
+                "Ôéí "
                 + queryService
                         .getTotalRevenue()
                         .toPlainString()
         );
 
-
-        // =====================================================
-        // OCCUPANCY CHART
-        // =====================================================
-
         refreshOccupancyChart();
     }
-
-
-    // =========================================================
-    // OCCUPANCY CHART
-    // =========================================================
 
     private void refreshOccupancyChart() {
 
         QueryService queryService =
                 context.getQueryService();
 
-
         Map<ParkingSpaceType, Long> occupancy =
                 queryService
                         .getOccupancyByType();
-
-
-        // =====================================================
-        // REAL VALUES
-        // =====================================================
 
         long cars =
                 occupancy.getOrDefault(
@@ -233,13 +155,11 @@ public class ReportsViewController {
                         0L
                 );
 
-
         long motorcycles =
                 occupancy.getOrDefault(
                         ParkingSpaceType.MOTORCYCLE,
                         0L
                 );
-
 
         long cargo =
                 occupancy.getOrDefault(
@@ -247,35 +167,18 @@ public class ReportsViewController {
                         0L
                 );
 
-
-        // =====================================================
-        // SERIES
-        // =====================================================
-
         XYChart.Series<String, Number> series =
                 new XYChart.Series<>();
-
 
         series.setName(
                 "Espacios ocupados"
         );
 
-
-        /*
-         * IMPORTANT:
-         *
-         * The bars initially contain 0.
-         *
-         * Later we animate them until reaching
-         * their real value.
-         */
-
         XYChart.Data<String, Number> carData =
                 new XYChart.Data<>(
-                        "Automóvil",
+                        "Autom├│vil",
                         0
                 );
-
 
         XYChart.Data<String, Number> motorcycleData =
                 new XYChart.Data<>(
@@ -283,13 +186,11 @@ public class ReportsViewController {
                         0
                 );
 
-
         XYChart.Data<String, Number> cargoData =
                 new XYChart.Data<>(
                         "Carga",
                         0
                 );
-
 
         series.getData().addAll(
                 carData,
@@ -297,19 +198,9 @@ public class ReportsViewController {
                 cargoData
         );
 
-
-        // =====================================================
-        // CLEAR OLD DATA
-        // =====================================================
-
         BC_TYPE_SPACE
                 .getData()
                 .clear();
-
-
-        // =====================================================
-        // ADD SERIES
-        // =====================================================
 
         BC_TYPE_SPACE
                 .getData()
@@ -317,23 +208,16 @@ public class ReportsViewController {
                         series
                 );
 
-
         BC_TYPE_SPACE.setLegendVisible(
                 false
         );
 
-
-        /*
-         * We wait a little so JavaFX has enough time to
-         * create the chart nodes.
-         */
         PauseTransition wait =
                 new PauseTransition(
                         javafx.util.Duration.millis(
                                 350
                         )
                 );
-
 
         wait.setOnFinished(event -> {
 
@@ -343,17 +227,12 @@ public class ReportsViewController {
                     700
             );
 
-
-            /*
-             * Motorcycle begins slightly later.
-             */
             PauseTransition motorcycleDelay =
                     new PauseTransition(
                             javafx.util.Duration.millis(
                                     130
                             )
                     );
-
 
             motorcycleDelay.setOnFinished(e ->
 
@@ -364,20 +243,14 @@ public class ReportsViewController {
                     )
             );
 
-
             motorcycleDelay.play();
 
-
-            /*
-             * Cargo begins after motorcycle.
-             */
             PauseTransition cargoDelay =
                     new PauseTransition(
                             javafx.util.Duration.millis(
                                     260
                             )
                     );
-
 
             cargoDelay.setOnFinished(e ->
 
@@ -388,40 +261,22 @@ public class ReportsViewController {
                     )
             );
 
-
             cargoDelay.play();
         });
 
-
         wait.play();
     }
-
-
-    // =========================================================
-    // ANIMATE INDIVIDUAL BAR
-    // =========================================================
 
     private void animateBar(
             XYChart.Data<String, Number> data,
             long finalValue,
             double durationMillis) {
 
-        /*
-         * We create a temporary numeric property.
-         *
-         * It starts at 0 and finishes at the actual
-         * occupancy value.
-         */
         DoubleProperty animatedValue =
                 new SimpleDoubleProperty(
                         0
                 );
 
-
-        /*
-         * Every time the temporary property changes,
-         * the chart receives the new value.
-         */
         animatedValue.addListener(
                 (observable,
                  oldValue,
@@ -432,11 +287,6 @@ public class ReportsViewController {
                     );
                 }
         );
-
-
-        // =====================================================
-        // TIMELINE
-        // =====================================================
 
         Timeline timeline =
                 new Timeline(
@@ -462,20 +312,11 @@ public class ReportsViewController {
                         )
                 );
 
-
         timeline.play();
     }
 
-
-    // =========================================================
-    // REPORT GENERAL ANIMATION
-    // =========================================================
-
     private void animateReport() {
 
-        /*
-         * Prepare the numeric labels.
-         */
         prepareNode(
                 LBL_TOTAL_TICKETS
         );
@@ -496,21 +337,11 @@ public class ReportsViewController {
                 LBL_TOTAL_REVENUE
         );
 
-
-        // =====================================================
-        // TOTAL TICKETS
-        // =====================================================
-
         SequentialTransition totalTickets =
                 createFadeAndSlide(
                         LBL_TOTAL_TICKETS,
                         260
                 );
-
-
-        // =====================================================
-        // ACTIVE
-        // =====================================================
 
         SequentialTransition activeTickets =
                 createFadeAndSlide(
@@ -518,21 +349,11 @@ public class ReportsViewController {
                         260
                 );
 
-
-        // =====================================================
-        // CLOSED
-        // =====================================================
-
         SequentialTransition closedTickets =
                 createFadeAndSlide(
                         LBL_TOTAL_TICKETS_CLOSE,
                         260
                 );
-
-
-        // =====================================================
-        // PAID
-        // =====================================================
 
         SequentialTransition paidTickets =
                 createFadeAndSlide(
@@ -540,21 +361,11 @@ public class ReportsViewController {
                         260
                 );
 
-
-        // =====================================================
-        // REVENUE
-        // =====================================================
-
         SequentialTransition revenue =
                 createFadeAndSlide(
                         LBL_TOTAL_REVENUE,
                         400
                 );
-
-
-        // =====================================================
-        // COMPLETE SEQUENCE
-        // =====================================================
 
         SequentialTransition completeSequence =
                 new SequentialTransition(
@@ -576,14 +387,8 @@ public class ReportsViewController {
                         revenue
                 );
 
-
         completeSequence.play();
     }
-
-
-    // =========================================================
-    // PREPARE NODE
-    // =========================================================
 
     private void prepareNode(
             Node node) {
@@ -597,18 +402,9 @@ public class ReportsViewController {
         );
     }
 
-
-    // =========================================================
-    // FADE + MOVEMENT
-    // =========================================================
-
     private SequentialTransition createFadeAndSlide(
             Node node,
             double durationMillis) {
-
-        // =====================================================
-        // FADE
-        // =====================================================
 
         FadeTransition fade =
                 new FadeTransition(
@@ -618,20 +414,13 @@ public class ReportsViewController {
                         node
                 );
 
-
         fade.setFromValue(
                 0.0
         );
 
-
         fade.setToValue(
                 1.0
         );
-
-
-        // =====================================================
-        // MOVEMENT
-        // =====================================================
 
         TranslateTransition movement =
                 new TranslateTransition(
@@ -641,28 +430,19 @@ public class ReportsViewController {
                         node
                 );
 
-
         movement.setFromY(
                 7.0
         );
-
 
         movement.setToY(
                 0.0
         );
 
-
-        /*
-         * Fade first and then a very small finishing movement.
-         *
-         * No scaling is used, so the text size never changes.
-         */
         fade.setOnFinished(event ->
                 node.setTranslateY(
                         0.0
                 )
         );
-
 
         return new SequentialTransition(
                 fade,

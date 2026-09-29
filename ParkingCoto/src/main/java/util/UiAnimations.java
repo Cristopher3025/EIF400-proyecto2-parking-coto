@@ -11,8 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Duration;
 
 /**
- * Animaciones visuales reutilizables para Parking Coto.
- * No modifica la lógica del dominio; únicamente anima nodos JavaFX.
+ * Provides reusable JavaFX animations for user interface nodes.
  */
 public final class UiAnimations {
 
@@ -22,7 +21,11 @@ public final class UiAnimations {
     private UiAnimations() {
     }
 
-    /** Aparición suave estilo película: opacidad + pequeño desplazamiento vertical. */
+    /**
+     * Fades in a node while moving it slightly upward.
+     *
+     * @param node node to animate; {@code null} is ignored
+     */
     public static void cinematicFadeIn(Node node) {
         if (node == null) {
             return;
@@ -42,7 +45,12 @@ public final class UiAnimations {
         new ParallelTransition(fade, move).play();
     }
 
-    /** Ideal para labels cuyo número/texto acaba de actualizarse. */
+    /**
+     * Updates a label's text and fades the label into view.
+     *
+     * @param label label to update and animate; {@code null} is ignored
+     * @param text text to display
+     */
     public static void fadeText(Label label, String text) {
         if (label == null) {
             return;
@@ -53,8 +61,9 @@ public final class UiAnimations {
     }
 
     /**
-     * Hace que cada fila nueva de un TableView aparezca suavemente.
-     * Se configura una sola vez en initialize().
+     * Installs a fade-in animation for rows added to a table.
+     *
+     * @param table table to configure; {@code null} is ignored
      */
     public static <T> void installTableFade(TableView<T> table) {
         if (table == null) {
@@ -82,7 +91,11 @@ public final class UiAnimations {
         });
     }
 
-    /** Aparición suave de una vista completa al navegar. */
+    /**
+     * Fades a view into visibility.
+     *
+     * @param view view node to animate
+     */
     public static void fadeView(Node view) {
         cinematicFadeIn(view);
     }

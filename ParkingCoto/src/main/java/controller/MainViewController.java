@@ -43,16 +43,7 @@ import util.UiAnimations;
 
 public class MainViewController implements Initializable {
 
-    // =========================================================
-    // CONTEXT
-    // =========================================================
-
     private final ParkingContext context;
-
-
-    // =========================================================
-    // NAVIGATION
-    // =========================================================
 
     @FXML
     private JFXButton BTN_DASHBOARD;
@@ -81,11 +72,6 @@ public class MainViewController implements Initializable {
     @FXML
     private JFXButton BTN_STATE_SYSTEM;
 
-
-    // =========================================================
-    // DASHBOARD - GENERAL INFORMATION
-    // =========================================================
-
     @FXML
     private Label LBL_TOTAL_SPACES;
 
@@ -100,11 +86,6 @@ public class MainViewController implements Initializable {
 
     @FXML
     private Label LBL_ACTIVE_TICKETS;
-
-
-    // =========================================================
-    // DASHBOARD - OCCUPANCY
-    // =========================================================
 
     @FXML
     private Label LBL_SPACE_OCCUPIED_CAR;
@@ -124,11 +105,6 @@ public class MainViewController implements Initializable {
     @FXML
     private Label LBL_PERCENTAGE_CARGO_VEHICLE;
 
-
-    // =========================================================
-    // PROGRESS BARS
-    // =========================================================
-
     @FXML
     private ProgressBar PB_CAR;
 
@@ -138,42 +114,16 @@ public class MainViewController implements Initializable {
     @FXML
     private ProgressBar PB_CARGO_VEHICLE;
 
-
-    // =========================================================
-    // DYNAMIC CONTENT
-    // =========================================================
-
     @FXML
     private AnchorPane AP_INFORMATION_2;
 
     private List<Node> dashboardInformationNodes;
-
-
-    // =========================================================
-    // FINAL PROGRESS VALUES
-    // =========================================================
-
-    /*
-     * These variables store the real occupancy percentage.
-     *
-     * Example:
-     *
-     * 5 occupied / 10 total = 0.50
-     *
-     * The ProgressBar is temporarily placed at 0 during
-     * animation and then grows until this value.
-     */
 
     private double carProgress;
 
     private double motorcycleProgress;
 
     private double cargoProgress;
-
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
 
     public MainViewController(
             ParkingContext context) {
@@ -184,11 +134,6 @@ public class MainViewController implements Initializable {
                         "Parking context cannot be null"
                 );
     }
-
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
 
     @Override
     public void initialize(
@@ -204,11 +149,6 @@ public class MainViewController implements Initializable {
         animateDashboard();
     }
 
-
-    // =========================================================
-    // SAVE DASHBOARD
-    // =========================================================
-
     private void saveDashboardInformation() {
 
         dashboardInformationNodes =
@@ -218,16 +158,7 @@ public class MainViewController implements Initializable {
                 );
     }
 
-
-    // =========================================================
-    // SHOW DASHBOARD
-    // =========================================================
-
     private void showDashboard() {
-
-        /*
-         * Restore original Dashboard.
-         */
 
         AP_INFORMATION_2
                 .getChildren()
@@ -235,65 +166,35 @@ public class MainViewController implements Initializable {
                         dashboardInformationNodes
                 );
 
-
-        /*
-         * Refresh information because Entry, Exit or Payment
-         * may have changed the system data.
-         */
-
         refreshDashboard();
-
-
-        /*
-         * General cinematic transition.
-         */
 
         UiAnimations.fadeView(
                 AP_INFORMATION_2
         );
 
-
-        /*
-         * Dashboard internal animation.
-         */
-
         animateDashboard();
     }
-
-
-    // =========================================================
-    // REFRESH DASHBOARD
-    // =========================================================
 
     private void refreshDashboard() {
 
         var queryService =
                 context.getQueryService();
 
-
         var spaces =
                 queryService
                         .getParkingSpaces();
-
 
         var occupiedSpaces =
                 queryService
                         .getOccupiedParkingSpaces();
 
-
         var availableSpaces =
                 queryService
                         .getAvailableParkingSpaces();
 
-
         var activeTickets =
                 queryService
                         .getActiveTickets();
-
-
-        // =====================================================
-        // TOTAL SPACES
-        // =====================================================
 
         LBL_TOTAL_SPACES.setText(
                 String.valueOf(
@@ -301,21 +202,11 @@ public class MainViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // OCCUPIED SPACES
-        // =====================================================
-
         LBL_SPACES_OCCUPATED.setText(
                 String.valueOf(
                         occupiedSpaces.size()
                 )
         );
-
-
-        // =====================================================
-        // AVAILABLE SPACES
-        // =====================================================
 
         LBL_SPACES_AVAILABLE.setText(
                 String.valueOf(
@@ -323,33 +214,18 @@ public class MainViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // ACTIVE TICKETS
-        // =====================================================
-
         LBL_ACTIVE_TICKETS.setText(
                 String.valueOf(
                         activeTickets.size()
                 )
         );
 
-
-        // =====================================================
-        // TOTAL REVENUE
-        // =====================================================
-
         LBL_TOTAL_REVENUE.setText(
-                "₡ "
+                "Ôéí "
                 + queryService
                         .getTotalRevenue()
                         .toPlainString()
         );
-
-
-        // =====================================================
-        // OCCUPANCY
-        // =====================================================
 
         updateOccupancyByType(
                 spaces,
@@ -357,19 +233,9 @@ public class MainViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // OCCUPANCY BY TYPE
-    // =========================================================
-
     private void updateOccupancyByType(
             List<ParkingSpace> spaces,
             List<ParkingSpace> occupiedSpaces) {
-
-
-        // =====================================================
-        // CAR
-        // =====================================================
 
         carProgress =
                 updateTypeInformation(
@@ -380,11 +246,6 @@ public class MainViewController implements Initializable {
                         LBL_PERCENTAGE_CAR
                 );
 
-
-        // =====================================================
-        // MOTORCYCLE
-        // =====================================================
-
         motorcycleProgress =
                 updateTypeInformation(
                         ParkingSpaceType.MOTORCYCLE,
@@ -394,11 +255,6 @@ public class MainViewController implements Initializable {
                         LBL_PERCENTAGE_MOTORCYCLE
                 );
 
-
-        // =====================================================
-        // CARGO
-        // =====================================================
-
         cargoProgress =
                 updateTypeInformation(
                         ParkingSpaceType.CARGO,
@@ -407,14 +263,6 @@ public class MainViewController implements Initializable {
                         LBL_SPACE_OCCUPIED_CARGO_VEHICLE,
                         LBL_PERCENTAGE_CARGO_VEHICLE
                 );
-
-
-        /*
-         * Put the real values initially.
-         *
-         * animateDashboard() will temporarily move them
-         * to zero before playing the animation.
-         */
 
         PB_CAR.setProgress(
                 carProgress
@@ -429,22 +277,12 @@ public class MainViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // UPDATE TYPE INFORMATION
-    // =========================================================
-
     private double updateTypeInformation(
             ParkingSpaceType type,
             List<ParkingSpace> spaces,
             List<ParkingSpace> occupiedSpaces,
             Label occupiedLabel,
             Label percentageLabel) {
-
-
-        // =====================================================
-        // TOTAL
-        // =====================================================
 
         long total =
                 spaces.stream()
@@ -455,11 +293,6 @@ public class MainViewController implements Initializable {
                         )
                         .count();
 
-
-        // =====================================================
-        // OCCUPIED
-        // =====================================================
-
         long occupied =
                 occupiedSpaces.stream()
                         .filter(
@@ -469,31 +302,16 @@ public class MainViewController implements Initializable {
                         )
                         .count();
 
-
-        // =====================================================
-        // PERCENTAGE
-        // =====================================================
-
         double percentage =
                 total == 0
                         ? 0.0
                         : (double) occupied / total;
-
-
-        // =====================================================
-        // OCCUPIED / TOTAL
-        // =====================================================
 
         occupiedLabel.setText(
                 occupied
                 + "/"
                 + total
         );
-
-
-        // =====================================================
-        // PERCENTAGE LABEL
-        // =====================================================
 
         percentageLabel.setText(
                 String.format(
@@ -502,34 +320,10 @@ public class MainViewController implements Initializable {
                 )
         );
 
-
         return percentage;
     }
 
-
-    // =========================================================
-    // DASHBOARD CINEMATIC ANIMATION
-    // =========================================================
-
     private void animateDashboard() {
-
-        /*
-         * Reset all nodes before playing the sequence.
-         *
-         * IMPORTANT:
-         *
-         * We only modify opacity and translateY.
-         *
-         * We DO NOT modify:
-         *
-         * - scaleX
-         * - scaleY
-         * - font size
-         * - width
-         * - height
-         *
-         * Therefore text never grows or shrinks.
-         */
 
         prepareNode(
                 LBL_TOTAL_SPACES
@@ -551,7 +345,6 @@ public class MainViewController implements Initializable {
                 LBL_ACTIVE_TICKETS
         );
 
-
         prepareNode(
                 LBL_SPACE_OCCUPIED_CAR
         );
@@ -559,7 +352,6 @@ public class MainViewController implements Initializable {
         prepareNode(
                 LBL_PERCENTAGE_CAR
         );
-
 
         prepareNode(
                 LBL_SPACE_OCCUPIED_MOTORCYCLE
@@ -569,7 +361,6 @@ public class MainViewController implements Initializable {
                 LBL_PERCENTAGE_MOTORCYCLE
         );
 
-
         prepareNode(
                 LBL_SPACE_OCCUPIED_CARGO_VEHICLE
         );
@@ -577,11 +368,6 @@ public class MainViewController implements Initializable {
         prepareNode(
                 LBL_PERCENTAGE_CARGO_VEHICLE
         );
-
-
-        // =====================================================
-        // RESET BARS
-        // =====================================================
 
         PB_CAR.setProgress(
                 0.0
@@ -595,17 +381,11 @@ public class MainViewController implements Initializable {
                 0.0
         );
 
-
-        // =====================================================
-        // TOP CARDS
-        // =====================================================
-
         ParallelTransition totalSpacesAnimation =
                 createFadeAndSlide(
                         LBL_TOTAL_SPACES,
                         280
                 );
-
 
         ParallelTransition occupiedAnimation =
                 createFadeAndSlide(
@@ -613,24 +393,17 @@ public class MainViewController implements Initializable {
                         280
                 );
 
-
         ParallelTransition availableAnimation =
                 createFadeAndSlide(
                         LBL_SPACES_AVAILABLE,
                         280
                 );
 
-
         ParallelTransition revenueAnimation =
                 createFadeAndSlide(
                         LBL_TOTAL_REVENUE,
                         280
                 );
-
-
-        // =====================================================
-        // FIRST ROW SEQUENCE
-        // =====================================================
 
         SequentialTransition informationSequence =
                 new SequentialTransition(
@@ -662,11 +435,6 @@ public class MainViewController implements Initializable {
                         revenueAnimation
                 );
 
-
-        // =====================================================
-        // CAR INFORMATION
-        // =====================================================
-
         ParallelTransition carInformation =
                 new ParallelTransition(
 
@@ -680,11 +448,6 @@ public class MainViewController implements Initializable {
                                 300
                         )
                 );
-
-
-        // =====================================================
-        // MOTORCYCLE INFORMATION
-        // =====================================================
 
         ParallelTransition motorcycleInformation =
                 new ParallelTransition(
@@ -700,11 +463,6 @@ public class MainViewController implements Initializable {
                         )
                 );
 
-
-        // =====================================================
-        // CARGO INFORMATION
-        // =====================================================
-
         ParallelTransition cargoInformation =
                 new ParallelTransition(
 
@@ -719,18 +477,12 @@ public class MainViewController implements Initializable {
                         )
                 );
 
-
-        // =====================================================
-        // PROGRESS BARS
-        // =====================================================
-
         Timeline carBar =
                 createProgressAnimation(
                         PB_CAR,
                         carProgress,
                         650
                 );
-
 
         Timeline motorcycleBar =
                 createProgressAnimation(
@@ -739,7 +491,6 @@ public class MainViewController implements Initializable {
                         650
                 );
 
-
         Timeline cargoBar =
                 createProgressAnimation(
                         PB_CARGO_VEHICLE,
@@ -747,21 +498,11 @@ public class MainViewController implements Initializable {
                         650
                 );
 
-
-        // =====================================================
-        // CAR ROW
-        // =====================================================
-
         ParallelTransition carRow =
                 new ParallelTransition(
                         carInformation,
                         carBar
                 );
-
-
-        // =====================================================
-        // MOTORCYCLE ROW
-        // =====================================================
 
         ParallelTransition motorcycleRow =
                 new ParallelTransition(
@@ -769,21 +510,11 @@ public class MainViewController implements Initializable {
                         motorcycleBar
                 );
 
-
-        // =====================================================
-        // CARGO ROW
-        // =====================================================
-
         ParallelTransition cargoRow =
                 new ParallelTransition(
                         cargoInformation,
                         cargoBar
                 );
-
-
-        // =====================================================
-        // ACTIVE TICKET
-        // =====================================================
 
         ParallelTransition activeTicketsAnimation =
                 createFadeAndSlide(
@@ -791,25 +522,10 @@ public class MainViewController implements Initializable {
                         400
                 );
 
-
-        // =====================================================
-        // COMPLETE CINEMATIC SEQUENCE
-        // =====================================================
-
         SequentialTransition completeAnimation =
                 new SequentialTransition(
 
-                        /*
-                         * First:
-                         * Dashboard statistics.
-                         */
-
                         informationSequence,
-
-
-                        /*
-                         * Small cinematic pause.
-                         */
 
                         new PauseTransition(
                                 Duration.millis(
@@ -817,53 +533,23 @@ public class MainViewController implements Initializable {
                                 )
                         ),
 
-
-                        /*
-                         * Automobile occupancy.
-                         */
-
                         carRow,
-
-
-                        /*
-                         * Small pause.
-                         */
 
                         new PauseTransition(
                                 Duration.millis(
                                         70
                                 )
                         ),
-
-
-                        /*
-                         * Motorcycle occupancy.
-                         */
 
                         motorcycleRow,
 
-
-                        /*
-                         * Small pause.
-                         */
-
                         new PauseTransition(
                                 Duration.millis(
                                         70
                                 )
                         ),
 
-
-                        /*
-                         * Cargo occupancy.
-                         */
-
                         cargoRow,
-
-
-                        /*
-                         * Final card.
-                         */
 
                         new PauseTransition(
                                 Duration.millis(
@@ -874,14 +560,8 @@ public class MainViewController implements Initializable {
                         activeTicketsAnimation
                 );
 
-
         completeAnimation.play();
     }
-
-
-    // =========================================================
-    // PREPARE NODE
-    // =========================================================
 
     private void prepareNode(
             Node node) {
@@ -895,19 +575,9 @@ public class MainViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // FADE + SMALL SLIDE
-    // =========================================================
-
     private ParallelTransition createFadeAndSlide(
             Node node,
             double durationMillis) {
-
-
-        // =====================================================
-        // FADE
-        // =====================================================
 
         FadeTransition fade =
                 new FadeTransition(
@@ -917,7 +587,6 @@ public class MainViewController implements Initializable {
                         node
                 );
 
-
         fade.setFromValue(
                 0.0
         );
@@ -925,11 +594,6 @@ public class MainViewController implements Initializable {
         fade.setToValue(
                 1.0
         );
-
-
-        // =====================================================
-        // MOVEMENT
-        // =====================================================
 
         TranslateTransition movement =
                 new TranslateTransition(
@@ -939,7 +603,6 @@ public class MainViewController implements Initializable {
                         node
                 );
 
-
         movement.setFromY(
                 7.0
         );
@@ -948,27 +611,16 @@ public class MainViewController implements Initializable {
                 0.0
         );
 
-
         return new ParallelTransition(
                 fade,
                 movement
         );
     }
 
-
-    // =========================================================
-    // PROGRESS BAR ANIMATION
-    // =========================================================
-
     private Timeline createProgressAnimation(
             ProgressBar progressBar,
             double finalProgress,
             double durationMillis) {
-
-
-        /*
-         * Ensure value remains between 0 and 1.
-         */
 
         double safeProgress =
                 Math.max(
@@ -979,19 +631,9 @@ public class MainViewController implements Initializable {
                         )
                 );
 
-
-        /*
-         * Begin empty.
-         */
-
         progressBar.setProgress(
                 0.0
         );
-
-
-        // =====================================================
-        // INITIAL FRAME
-        // =====================================================
 
         KeyFrame start =
                 new KeyFrame(
@@ -1004,11 +646,6 @@ public class MainViewController implements Initializable {
                                 0.0
                         )
                 );
-
-
-        // =====================================================
-        // FINAL FRAME
-        // =====================================================
 
         KeyFrame finish =
                 new KeyFrame(
@@ -1024,17 +661,11 @@ public class MainViewController implements Initializable {
                         )
                 );
 
-
         return new Timeline(
                 start,
                 finish
         );
     }
-
-
-    // =========================================================
-    // APPLICATION SCREENS
-    // =========================================================
 
     private void showVehicles() {
 
@@ -1043,14 +674,12 @@ public class MainViewController implements Initializable {
         );
     }
 
-
     private void showParkingSpaces() {
 
         loadView(
                 "ParkingSpacesView"
         );
     }
-
 
     private void showEntry() {
 
@@ -1059,14 +688,12 @@ public class MainViewController implements Initializable {
         );
     }
 
-
     private void showExit() {
 
         loadView(
                 "ExitView"
         );
     }
-
 
     private void showPayment() {
 
@@ -1075,14 +702,12 @@ public class MainViewController implements Initializable {
         );
     }
 
-
     private void showTickets() {
 
         loadView(
                 "TicketsView"
         );
     }
-
 
     private void showReports() {
 
@@ -1091,40 +716,21 @@ public class MainViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // VIEW LOADER
-    // =========================================================
-
     private void loadView(
             String fxml) {
 
         try {
-
-            // =================================================
-            // LOAD FXML
-            // =================================================
 
             Parent view =
                     App.loadFXML(
                             fxml
                     );
 
-
-            // =================================================
-            // REPLACE CURRENT CONTENT
-            // =================================================
-
             AP_INFORMATION_2
                     .getChildren()
                     .setAll(
                             view
                     );
-
-
-            // =================================================
-            // FIT VIEW
-            // =================================================
 
             AnchorPane.setTopAnchor(
                     view,
@@ -1146,15 +752,9 @@ public class MainViewController implements Initializable {
                     0.0
             );
 
-
-            // =================================================
-            // SCREEN TRANSITION
-            // =================================================
-
             UiAnimations.fadeView(
                     view
             );
-
 
         } catch (IOException exception) {
 
@@ -1166,87 +766,42 @@ public class MainViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // NAVIGATION
-    // =========================================================
-
     private void configureNavigation() {
-
-
-        // =====================================================
-        // DASHBOARD
-        // =====================================================
 
         BTN_DASHBOARD.setOnAction(
                 event ->
                         showDashboard()
         );
 
-
-        // =====================================================
-        // VEHICLES
-        // =====================================================
-
         BTN_VEHICLES.setOnAction(
                 event ->
                         showVehicles()
         );
-
-
-        // =====================================================
-        // PARKING SPACES
-        // =====================================================
 
         BTN_SPACES.setOnAction(
                 event ->
                         showParkingSpaces()
         );
 
-
-        // =====================================================
-        // ENTRY
-        // =====================================================
-
         BTN_RECORD_ENTRY.setOnAction(
                 event ->
                         showEntry()
         );
-
-
-        // =====================================================
-        // EXIT
-        // =====================================================
 
         BTN_RECORD_EXIT.setOnAction(
                 event ->
                         showExit()
         );
 
-
-        // =====================================================
-        // PAYMENT
-        // =====================================================
-
         BTN_RECORD_PAYMENT.setOnAction(
                 event ->
                         showPayment()
         );
 
-
-        // =====================================================
-        // TICKETS
-        // =====================================================
-
         BTN_TICKETS.setOnAction(
                 event ->
                         showTickets()
         );
-
-
-        // =====================================================
-        // REPORTS
-        // =====================================================
 
         BTN_REPORTS.setOnAction(
                 event ->

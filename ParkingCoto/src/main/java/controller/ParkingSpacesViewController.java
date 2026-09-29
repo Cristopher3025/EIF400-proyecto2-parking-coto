@@ -37,31 +37,17 @@ import service.RegistrationService;
 
 public class ParkingSpacesViewController implements Initializable {
 
-    // =========================================================
-    // SERVICES
-    // =========================================================
-
     private final RegistrationService registrationService;
     private final QueryService queryService;
 
-
-    // =========================================================
-    // DISPLAY VALUES
-    // =========================================================
-
     private static final String TYPE_CAR =
-            "Automóvil";
+            "Autom├│vil";
 
     private static final String TYPE_MOTORCYCLE =
             "Motocicleta";
 
     private static final String TYPE_CARGO =
-            "Vehículo de carga";
-
-
-    // =========================================================
-    // FORM
-    // =========================================================
+            "Veh├¡culo de carga";
 
     @FXML
     private AnchorPane AP_PARKING_SPACES;
@@ -75,18 +61,8 @@ public class ParkingSpacesViewController implements Initializable {
     @FXML
     private JFXButton BTN_REGISTER;
 
-
-    // =========================================================
-    // SEARCH
-    // =========================================================
-
     @FXML
     private JFXTextField TF_SEARCH_SPACES;
-
-
-    // =========================================================
-    // TABLE
-    // =========================================================
 
     @FXML
     private TableView<ParkingSpace> TV_PARKING_SPACES;
@@ -103,44 +79,18 @@ public class ParkingSpacesViewController implements Initializable {
     @FXML
     private TableColumn<ParkingSpace, String> TV_RW_STATE;
 
-
-    // =========================================================
-    // ACTION BUTTONS
-    // =========================================================
-
     @FXML
     private JFXButton BTN_OUT_OF_SERVICE;
 
     @FXML
     private JFXButton BTN_RESTORE_SERVICE;
 
-
-    // =========================================================
-    // TABLE DATA
-    // =========================================================
-
     private final ObservableList<ParkingSpace> parkingSpaces =
             FXCollections.observableArrayList();
 
     private FilteredList<ParkingSpace> filteredParkingSpaces;
 
-
-    // =========================================================
-    // ANIMATION CONTROL
-    // =========================================================
-
-    /*
-     * Stores the number of the space that was just registered.
-     *
-     * This allows us to animate ONLY the new row instead of
-     * animating the complete table.
-     */
     private String recentlyRegisteredSpaceNumber;
-
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
 
     public ParkingSpacesViewController(
             ParkingContext context) {
@@ -157,11 +107,6 @@ public class ParkingSpacesViewController implements Initializable {
                 context.getQueryService();
     }
 
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
-
     @Override
     public void initialize(
             URL url,
@@ -176,11 +121,6 @@ public class ParkingSpacesViewController implements Initializable {
         loadParkingSpaces();
     }
 
-
-    // =========================================================
-    // COMBO BOX
-    // =========================================================
-
     private void configureSpaceTypes() {
 
         CB_TYPE_VEHICLE.setItems(
@@ -192,16 +132,7 @@ public class ParkingSpacesViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // TABLE
-    // =========================================================
-
     private void configureTable() {
-
-        // =====================================================
-        // NUMBER
-        // =====================================================
 
         TV_RW_ID.setCellValueFactory(
                 cellData ->
@@ -212,11 +143,6 @@ public class ParkingSpacesViewController implements Initializable {
                         )
         );
 
-
-        // =====================================================
-        // TYPE
-        // =====================================================
-
         TV_RW_TYPE_VEHICLE.setCellValueFactory(
                 cellData ->
                         new ReadOnlyStringWrapper(
@@ -225,11 +151,6 @@ public class ParkingSpacesViewController implements Initializable {
                                 )
                         )
         );
-
-
-        // =====================================================
-        // VEHICLE
-        // =====================================================
 
         TV_RW_VEHICLE.setCellValueFactory(
                 cellData -> {
@@ -240,7 +161,7 @@ public class ParkingSpacesViewController implements Initializable {
                     if (space.getParkedVehicle() == null) {
 
                         return new ReadOnlyStringWrapper(
-                                "—"
+                                "ÔÇö"
                         );
                     }
 
@@ -252,11 +173,6 @@ public class ParkingSpacesViewController implements Initializable {
                 }
         );
 
-
-        // =====================================================
-        // STATUS
-        // =====================================================
-
         TV_RW_STATE.setCellValueFactory(
                 cellData ->
                         new ReadOnlyStringWrapper(
@@ -266,34 +182,18 @@ public class ParkingSpacesViewController implements Initializable {
                         )
         );
 
-
-        // =====================================================
-        // FILTERED LIST
-        // =====================================================
-
         filteredParkingSpaces =
                 new FilteredList<>(
                         parkingSpaces,
                         space -> true
                 );
 
-
         TV_PARKING_SPACES.setItems(
                 filteredParkingSpaces
         );
 
-
-        // =====================================================
-        // CINEMATIC ROW ANIMATION
-        // =====================================================
-
         configureRowAnimations();
     }
-
-
-    // =========================================================
-    // ROW ANIMATIONS
-    // =========================================================
 
     private void configureRowAnimations() {
 
@@ -303,13 +203,6 @@ public class ParkingSpacesViewController implements Initializable {
                     TableRow<ParkingSpace> row =
                             new TableRow<>();
 
-
-                    /*
-                     * JavaFX reuses TableRow objects internally.
-                     *
-                     * For that reason, we listen to the item
-                     * represented by the row.
-                     */
                     row.itemProperty().addListener(
                             (
                                     observable,
@@ -321,11 +214,6 @@ public class ParkingSpacesViewController implements Initializable {
                                     return;
                                 }
 
-
-                                /*
-                                 * Only animate the space that
-                                 * was JUST registered.
-                                 */
                                 if (recentlyRegisteredSpaceNumber != null
                                         && recentlyRegisteredSpaceNumber
                                                 .equalsIgnoreCase(
@@ -336,11 +224,6 @@ public class ParkingSpacesViewController implements Initializable {
                                             row
                                     );
 
-
-                                    /*
-                                     * Clear the marker so that
-                                     * the animation happens once.
-                                     */
                                     recentlyRegisteredSpaceNumber = null;
                                 }
                             }
@@ -351,17 +234,8 @@ public class ParkingSpacesViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // NEW SPACE ANIMATION
-    // =========================================================
-
     private void animateNewSpaceRow(
             TableRow<ParkingSpace> row) {
-
-        // =====================================================
-        // INITIAL STATE
-        // =====================================================
 
         row.setOpacity(
                 0.0
@@ -370,11 +244,6 @@ public class ParkingSpacesViewController implements Initializable {
         row.setTranslateY(
                 8.0
         );
-
-
-        // =====================================================
-        // FADE
-        // =====================================================
 
         FadeTransition fade =
                 new FadeTransition(
@@ -390,11 +259,6 @@ public class ParkingSpacesViewController implements Initializable {
                 1.0
         );
 
-
-        // =====================================================
-        // MOVEMENT
-        // =====================================================
-
         TranslateTransition movement =
                 new TranslateTransition(
                         Duration.millis(500),
@@ -409,28 +273,14 @@ public class ParkingSpacesViewController implements Initializable {
                 0.0
         );
 
-
-        // =====================================================
-        // PLAY
-        // =====================================================
-
         fade.play();
 
         movement.play();
     }
 
-
-    // =========================================================
-    // STATUS CHANGE ANIMATION
-    // =========================================================
-
     private void animateStatusChange(
             ParkingSpace space) {
 
-        /*
-         * Find the visible row corresponding to the
-         * selected ParkingSpace.
-         */
         for (javafx.scene.Node node :
                 TV_PARKING_SPACES.lookupAll(".table-row-cell")) {
 
@@ -438,22 +288,14 @@ public class ParkingSpacesViewController implements Initializable {
                 continue;
             }
 
-
             @SuppressWarnings("unchecked")
             TableRow<ParkingSpace> row =
                     (TableRow<ParkingSpace>) node;
-
 
             if (row.getItem() != space) {
                 continue;
             }
 
-
-            /*
-             * We only modify opacity.
-             *
-             * There is NO scaling and NO font-size change.
-             */
             FadeTransition fadeOut =
                     new FadeTransition(
                             Duration.millis(150),
@@ -467,7 +309,6 @@ public class ParkingSpacesViewController implements Initializable {
             fadeOut.setToValue(
                     0.35
             );
-
 
             FadeTransition fadeIn =
                     new FadeTransition(
@@ -483,7 +324,6 @@ public class ParkingSpacesViewController implements Initializable {
                     1.0
             );
 
-
             fadeOut.setOnFinished(
                     event -> {
 
@@ -493,17 +333,11 @@ public class ParkingSpacesViewController implements Initializable {
                     }
             );
 
-
             fadeOut.play();
 
             break;
         }
     }
-
-
-    // =========================================================
-    // SEARCH
-    // =========================================================
 
     private void configureSearch() {
 
@@ -521,7 +355,6 @@ public class ParkingSpacesViewController implements Initializable {
                 );
     }
 
-
     private void filterParkingSpaces(
             String searchText) {
 
@@ -535,12 +368,10 @@ public class ParkingSpacesViewController implements Initializable {
             return;
         }
 
-
         String search =
                 searchText
                         .trim()
                         .toLowerCase();
-
 
         filteredParkingSpaces.setPredicate(
                 space -> {
@@ -550,13 +381,11 @@ public class ParkingSpacesViewController implements Initializable {
                                     .getNumber()
                                     .toLowerCase();
 
-
                     String type =
                             getSpaceTypeName(
                                     space
                             )
                                     .toLowerCase();
-
 
                     String status =
                             getStatusName(
@@ -564,10 +393,8 @@ public class ParkingSpacesViewController implements Initializable {
                             )
                                     .toLowerCase();
 
-
                     String vehiclePlate =
                             "";
-
 
                     if (space.getParkedVehicle() != null) {
 
@@ -578,7 +405,6 @@ public class ParkingSpacesViewController implements Initializable {
                                         .toLowerCase();
                     }
 
-
                     return number.contains(search)
                             || type.contains(search)
                             || status.contains(search)
@@ -587,69 +413,30 @@ public class ParkingSpacesViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // REGISTER SPACE
-    // =========================================================
-
     @FXML
     private void RegisterSpace(
             ActionEvent event) {
 
         try {
 
-            // =================================================
-            // CREATE SPACE
-            // =================================================
-
             ParkingSpace parkingSpace =
                     createParkingSpaceFromForm();
-
-
-            // =================================================
-            // REGISTER
-            // =================================================
 
             registrationService
                     .registerParkingSpace(
                             parkingSpace
                     );
 
-
-            /*
-             * Remember the newly registered space BEFORE
-             * refreshing the table.
-             */
             recentlyRegisteredSpaceNumber =
                     parkingSpace.getNumber();
 
-
-            // =================================================
-            // RELOAD
-            // =================================================
-
             loadParkingSpaces();
-
-
-            // =================================================
-            // SCROLL TO NEW SPACE
-            // =================================================
 
             scrollToParkingSpace(
                     parkingSpace
             );
 
-
-            // =================================================
-            // CLEAR FORM
-            // =================================================
-
             clearForm();
-
-
-            // =================================================
-            // MESSAGE
-            // =================================================
 
             showInformation(
                     "Espacio registrado",
@@ -657,7 +444,6 @@ public class ParkingSpacesViewController implements Initializable {
                     + parkingSpace.getNumber()
                     + " fue registrado correctamente."
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -668,11 +454,6 @@ public class ParkingSpacesViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // SCROLL TO NEW SPACE
-    // =========================================================
-
     private void scrollToParkingSpace(
             ParkingSpace parkingSpace) {
 
@@ -680,7 +461,6 @@ public class ParkingSpacesViewController implements Initializable {
                 filteredParkingSpaces.indexOf(
                         parkingSpace
                 );
-
 
         if (index >= 0) {
 
@@ -690,18 +470,12 @@ public class ParkingSpacesViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // MARK OUT OF SERVICE
-    // =========================================================
-
     @FXML
     private void MarkOutOfService(
             ActionEvent event) {
 
         ParkingSpace selectedSpace =
                 getSelectedParkingSpace();
-
 
         if (selectedSpace == null) {
 
@@ -713,35 +487,15 @@ public class ParkingSpacesViewController implements Initializable {
             return;
         }
 
-
         try {
-
-            // =================================================
-            // CHANGE DOMAIN STATE
-            // =================================================
 
             selectedSpace.markOutOfService();
 
-
-            // =================================================
-            // REFRESH
-            // =================================================
-
             TV_PARKING_SPACES.refresh();
-
-
-            // =================================================
-            // VISUAL ANIMATION
-            // =================================================
 
             animateStatusChange(
                     selectedSpace
             );
-
-
-            // =================================================
-            // MESSAGE
-            // =================================================
 
             showInformation(
                     "Espacio fuera de servicio",
@@ -749,7 +503,6 @@ public class ParkingSpacesViewController implements Initializable {
                     + selectedSpace.getNumber()
                     + " fue puesto fuera de servicio."
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -760,18 +513,12 @@ public class ParkingSpacesViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // RESTORE SERVICE
-    // =========================================================
-
     @FXML
     private void RestoreService(
             ActionEvent event) {
 
         ParkingSpace selectedSpace =
                 getSelectedParkingSpace();
-
 
         if (selectedSpace == null) {
 
@@ -783,35 +530,15 @@ public class ParkingSpacesViewController implements Initializable {
             return;
         }
 
-
         try {
-
-            // =================================================
-            // RESTORE DOMAIN STATE
-            // =================================================
 
             selectedSpace.restoreService();
 
-
-            // =================================================
-            // REFRESH
-            // =================================================
-
             TV_PARKING_SPACES.refresh();
-
-
-            // =================================================
-            // VISUAL ANIMATION
-            // =================================================
 
             animateStatusChange(
                     selectedSpace
             );
-
-
-            // =================================================
-            // MESSAGE
-            // =================================================
 
             showInformation(
                     "Espacio habilitado",
@@ -819,7 +546,6 @@ public class ParkingSpacesViewController implements Initializable {
                     + selectedSpace.getNumber()
                     + " fue habilitado correctamente."
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -830,11 +556,6 @@ public class ParkingSpacesViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // SELECTED SPACE
-    // =========================================================
-
     private ParkingSpace getSelectedParkingSpace() {
 
         return TV_PARKING_SPACES
@@ -842,20 +563,13 @@ public class ParkingSpacesViewController implements Initializable {
                 .getSelectedItem();
     }
 
-
-    // =========================================================
-    // SPACE CREATION
-    // =========================================================
-
     private ParkingSpace createParkingSpaceFromForm() {
 
         String number =
                 TF_NUMBER.getText();
 
-
         String selectedType =
                 CB_TYPE_VEHICLE.getValue();
-
 
         if (selectedType == null) {
 
@@ -864,23 +578,16 @@ public class ParkingSpacesViewController implements Initializable {
             );
         }
 
-
         ParkingSpaceType type =
                 getParkingSpaceType(
                         selectedType
                 );
-
 
         return new ParkingSpace(
                 number,
                 type
         );
     }
-
-
-    // =========================================================
-    // CONVERT DISPLAY TYPE TO ENUM
-    // =========================================================
 
     private ParkingSpaceType getParkingSpaceType(
             String selectedType) {
@@ -891,48 +598,33 @@ public class ParkingSpacesViewController implements Initializable {
 
                 return ParkingSpaceType.CAR;
 
-
             case TYPE_MOTORCYCLE:
 
                 return ParkingSpaceType.MOTORCYCLE;
-
 
             case TYPE_CARGO:
 
                 return ParkingSpaceType.CARGO;
 
-
             default:
 
                 throw new IllegalArgumentException(
-                        "Tipo de espacio no válido."
+                        "Tipo de espacio no v├ílido."
                 );
         }
     }
-
-
-    // =========================================================
-    // LOAD DATA
-    // =========================================================
 
     private void loadParkingSpaces() {
 
         List<ParkingSpace> registeredSpaces =
                 queryService.getParkingSpaces();
 
-
         parkingSpaces.setAll(
                 registeredSpaces
         );
 
-
         TV_PARKING_SPACES.refresh();
     }
-
-
-    // =========================================================
-    // DISPLAY TEXT
-    // =========================================================
 
     private String getSpaceTypeName(
             ParkingSpace space) {
@@ -943,23 +635,19 @@ public class ParkingSpacesViewController implements Initializable {
 
                 return TYPE_CAR;
 
-
             case MOTORCYCLE:
 
                 return TYPE_MOTORCYCLE;
 
-
             case CARGO:
 
                 return TYPE_CARGO;
-
 
             default:
 
                 return "Desconocido";
         }
     }
-
 
     private String getStatusName(
             ParkingSpace space) {
@@ -970,16 +658,13 @@ public class ParkingSpacesViewController implements Initializable {
 
                 return "Disponible";
 
-
             case OCCUPIED:
 
                 return "Ocupado";
 
-
             case OUT_OF_SERVICE:
 
                 return "Fuera de servicio";
-
 
             default:
 
@@ -987,28 +672,16 @@ public class ParkingSpacesViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // FORM
-    // =========================================================
-
     private void clearForm() {
 
         TF_NUMBER.clear();
-
 
         CB_TYPE_VEHICLE
                 .getSelectionModel()
                 .clearSelection();
 
-
         TF_NUMBER.requestFocus();
     }
-
-
-    // =========================================================
-    // MESSAGES
-    // =========================================================
 
     private void showInformation(
             String title,
@@ -1019,25 +692,20 @@ public class ParkingSpacesViewController implements Initializable {
                         Alert.AlertType.INFORMATION
                 );
 
-
         alert.setTitle(
                 "Parking Coto"
         );
-
 
         alert.setHeaderText(
                 title
         );
 
-
         alert.setContentText(
                 message
         );
 
-
         alert.showAndWait();
     }
-
 
     private void showError(
             String title,
@@ -1048,23 +716,19 @@ public class ParkingSpacesViewController implements Initializable {
                         Alert.AlertType.ERROR
                 );
 
-
         alert.setTitle(
                 "Parking Coto"
         );
 
-
         alert.setHeaderText(
                 title
         );
-
 
         alert.setContentText(
                 message != null
                         ? message
                         : "Ha ocurrido un error inesperado."
         );
-
 
         alert.showAndWait();
     }

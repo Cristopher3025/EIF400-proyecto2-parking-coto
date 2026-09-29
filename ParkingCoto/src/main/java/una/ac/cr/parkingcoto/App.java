@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import model.parking.ParkingLot;
 import service.ParkingContext;
 
@@ -16,12 +15,6 @@ public class App extends Application {
 
     private static Scene scene;
 
-    /*
-     * Contexto único de la aplicación.
-     *
-     * Todos los controladores que necesiten ParkingContext
-     * reciben exactamente esta misma instancia.
-     */
     private static final ParkingContext parkingContext =
             new ParkingContext(
                     new ParkingLot()
@@ -30,18 +23,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        // =====================================================
-        // CARGAR VISTA PRINCIPAL
-        // =====================================================
-
         Parent root =
                 loadFXML(
                         "MainView"
                 );
-
-        // =====================================================
-        // CREAR ESCENA
-        // =====================================================
 
         scene =
                 new Scene(
@@ -49,10 +34,6 @@ public class App extends Application {
                         1200,
                         700
                 );
-
-        // =====================================================
-        // CONFIGURAR VENTANA
-        // =====================================================
 
         stage.setTitle(
                 "Parking Coto"
@@ -62,41 +43,24 @@ public class App extends Application {
                 scene
         );
 
-        /*
-         * Impide que el usuario pueda estirar
-         * o redimensionar la ventana.
-         */
         stage.setResizable(
                 false
         );
 
-        /*
-         * Coloca la aplicación en el centro
-         * de la pantalla.
-         */
         stage.centerOnScreen();
 
-        /*
-         * Finalmente mostramos la ventana.
-         */
         stage.show();
     }
 
-    // =========================================================
-    // CAMBIO COMPLETO DE ESCENA
-    // =========================================================
-
     /**
-     * Reemplaza la raíz de la escena actual.
+     * Replaces the root node of the current scene.
      *
-     * En Parking Coto normalmente navegamos dentro de MainView,
-     * pero este método queda disponible si en algún momento se
-     * necesita reemplazar completamente la interfaz.
+     * @param fxml name of the FXML resource without the {@code .fxml} extension
+     * @throws IOException if the FXML resource cannot be loaded
      */
     public static void setRoot(
             String fxml
     ) throws IOException {
-
         scene.setRoot(
                 loadFXML(
                         fxml
@@ -104,23 +68,16 @@ public class App extends Application {
         );
     }
 
-    // =========================================================
-    // CARGA DE FXML
-    // =========================================================
-
     /**
-     * Carga un archivo FXML ubicado en:
+     * Loads an FXML resource from the application's view directory.
      *
-     * src/main/resources/view
-     *
-     * @param fxml nombre del archivo sin ".fxml"
-     * @return jerarquía JavaFX cargada
-     * @throws IOException si el FXML no puede cargarse
+     * @param fxml resource name without the {@code .fxml} extension
+     * @return the loaded JavaFX root node
+     * @throws IOException if the FXML resource cannot be loaded
      */
     public static Parent loadFXML(
             String fxml
     ) throws IOException {
-
         FXMLLoader loader =
                 new FXMLLoader(
                         App.class.getResource(
@@ -130,10 +87,6 @@ public class App extends Application {
                         )
                 );
 
-        /*
-         * Utilizamos nuestra propia fábrica para poder
-         * inyectar ParkingContext en los controladores.
-         */
         loader.setControllerFactory(
                 App::createController
         );
@@ -141,30 +94,18 @@ public class App extends Application {
         return loader.load();
     }
 
-    // =========================================================
-    // CONTROLLER FACTORY
-    // =========================================================
-
     /**
-     * Crea automáticamente los controladores.
+     * Creates a controller using the shared parking context when supported.
      *
-     * Primero intenta encontrar:
-     *
-     * Controller(ParkingContext context)
-     *
-     * Si no existe, utiliza:
-     *
-     * Controller()
+     * @param controllerType controller class to instantiate
+     * @return the instantiated controller
+     * @throws IllegalStateException if the controller cannot be instantiated
      */
     private static Object createController(
             Class<?> controllerType
     ) {
 
         try {
-
-            // =================================================
-            // CONTROLADOR CON PARKING CONTEXT
-            // =================================================
 
             Constructor<?> contextConstructor =
                     controllerType
@@ -178,10 +119,6 @@ public class App extends Application {
                     );
 
         } catch (NoSuchMethodException exception) {
-
-            // =================================================
-            // CONTROLADOR SIN PARKING CONTEXT
-            // =================================================
 
             try {
 
@@ -212,10 +149,6 @@ public class App extends Application {
             );
         }
     }
-
-    // =========================================================
-    // MAIN
-    // =========================================================
 
     public static void main(
             String[] args

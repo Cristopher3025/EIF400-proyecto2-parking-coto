@@ -1,11 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
-    
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1200.0" stylesheets="@../css/parking-coto.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="167.0" prefWidth="946.0">
+               <children>
+                  <ImageView fitHeight="168.0" fitWidth="949.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Banner.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <AnchorPane id="cardPrincipalInformation" fx:id="AP_INFORMATION_2" prefHeight="556.0" prefWidth="946.0">
+               <children>
+                  <AnchorPane id="cardActiveTicket" layoutX="589.0" layoutY="212.0" prefHeight="318.0" prefWidth="336.0">
+                     <children>
+                        <Label layoutX="91.0" layoutY="32.0" text="TICKETS ACTIVOS">
+                           <font>
+                              <Font name="Trebuchet MS" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="LBL_ACTIVE_TICKETS" layoutX="162.0" layoutY="201.0" prefHeight="55.0" prefWidth="33.0" />
+                        <ImageView fitHeight="77.0" fitWidth="65.0" layoutX="136.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/52721admissiontickets_109380.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="157.0" prefWidth="170.0" />
+                  <AnchorPane id="cardTotalSpaces" layoutX="13.0" layoutY="33.0" prefHeight="157.0" prefWidth="220.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Espacios totales">
+                           <font>
+                              <Font name="Trebuchet MS" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="65.0" fitWidth="74.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/-event-available_90146.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="LBL_TOTAL_SPACES" layoutX="110.0" layoutY="68.0" prefHeight="48.0" prefWidth="54.0">
+                           <font>
+                              <Font name="Trebuchet MS" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane id="cardOcupated" layoutX="245.0" layoutY="33.0" prefHeight="157.0" prefWidth="220.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="25.0" text="Ocupados">
+                           <font>
+                              <Font name="Trebuchet MS" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="65.0" fitWidth="74.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/action_unavailable_icon_180783.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="LBL_SPACES_OCCUPATED" layoutX="110.0" layoutY="71.0" prefHeight="48.0" prefWidth="54.0">
+                           <font>
+                              <Font name="Trebuchet MS" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane id="cardAvailable" layoutX="479.0" layoutY="33.0" prefHeight="157.0" prefWidth="220.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Disponibles">
+                           <font>
+                              <Font name="Trebuchet MS" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="65.0" fitWidth="74.0" layoutX="14.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/disponible.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="LBL_SPACES_AVAILABLE" layoutX="110.0" layoutY="69.0" prefHeight="48.0" prefWidth="54.0">
+                           <font>
+                              <Font name="Trebuchet MS" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane id="cardTotalRevenue" layoutX="714.0" layoutY="33.0" prefHeight="157.0" prefWidth="220.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Ingresos totales">
+                           <font>
+                              <Font name="Trebuchet MS" size="21.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="65.0" fitWidth="74.0" layoutX="16.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/money.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="LBL_TOTAL_REVENUE" layoutX="87.0" layoutY="70.0" prefHeight="48.0" prefWidth="130.0">
+                           <font>
+                              <Font name="Trebuchet MS" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane id="cardInformationVehiclesForTotalAndPercentage" layoutX="14.0" layoutY="205.0" prefHeight="326.0" prefWidth="553.0">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="29.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/carro.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="29.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/moto.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="39.0" fitWidth="45.0" layoutX="29.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/van_106619.png" />
+                           </image>
+                        </ImageView>
+                        <ProgressBar fx:id="PB_CAR" layoutX="213.0" layoutY="99.0" prefWidth="200.0" progress="0.0" />
+                        <ProgressBar fx:id="PB_MOTORCYCLE" layoutX="213.0" layoutY="168.0" prefWidth="200.0" progress="0.0" />
+                        <ProgressBar fx:id="PB_CARGO_VEHICLE" layoutX="213.0" layoutY="240.0" prefWidth="200.0" progress="0.0" />
+                        <Label fx:id="LBL_SPACE_OCCUPIED_CAR" layoutX="423.0" layoutY="88.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label fx:id="LBL_PERCENTAGE_CAR" layoutX="478.0" layoutY="88.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label fx:id="LBL_SPACE_OCCUPIED_MOTORCYCLE" layoutX="423.0" layoutY="157.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label fx:id="LBL_PERCENTAGE_MOTORCYCLE" layoutX="478.0" layoutY="157.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label fx:id="LBL_SPACE_OCCUPIED_CARGO_VEHICLE" layoutX="423.0" layoutY="228.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label fx:id="LBL_PERCENTAGE_CARGO_VEHICLE" layoutX="478.0" layoutY="228.0" prefHeight="41.0" prefWidth="46.0" />
+                        <Label layoutX="77.0" layoutY="88.0" prefHeight="42.0" prefWidth="121.0" text="Automóvil">
+                           <font>
+                              <Font name="Trebuchet MS" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="78.0" layoutY="156.0" prefHeight="42.0" prefWidth="119.0" text="Motocicleta">
+                           <font>
+                              <Font name="Trebuchet MS" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="78.0" layoutY="228.0" prefHeight="42.0" prefWidth="119.0" text="Carga">
+                           <font>
+                              <Font name="Trebuchet MS" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="128.0" layoutY="14.0" prefHeight="42.0" prefWidth="298.0" text="Ocupación por tipo de espacio">
+                           <font>
+                              <Font name="Trebuchet MS" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <AnchorPane prefHeight="665.0" prefWidth="254.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="BTN_DASHBOARD" alignment="BASELINE_LEFT" layoutX="45.0" prefHeight="51.0" prefWidth="206.0" text="Dashboard">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_VEHICLES" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="89.0" prefHeight="51.0" prefWidth="206.0" text="Vehículos">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_SPACES" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="182.0" prefHeight="52.0" prefWidth="206.0" text="Espacios">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_RECORD_ENTRY" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="279.0" prefHeight="51.0" prefWidth="206.0" text="Registrar ingreso">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_RECORD_EXIT" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="372.0" prefHeight="51.0" prefWidth="206.0" text="Registrar salida">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_RECORD_PAYMENT" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="471.0" prefHeight="51.0" prefWidth="206.0" text="Registrar pago">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_TICKETS" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="565.0" prefHeight="51.0" prefWidth="206.0" text="Tickets">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="BTN_REPORTS" alignment="BASELINE_LEFT" layoutX="45.0" layoutY="651.0" prefHeight="51.0" prefWidth="206.0" text="Consultas y reportes">
+               <font>
+                  <Font name="Trebuchet MS" size="12.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/homelinear_106213.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/open_trunk_car_vehicle_transportation_icon_124636.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/check_one_icon_155665.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/1486564412-plus_81511.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user_account_off_door_arrow_leave_ui_exit_logout_icon_210826.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/4288566bankingbillcardcreditexpenditurepaypayment-115790_115723.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ticket_icon_176365.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="3.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/1486504829-clipboard-tasks-report-business-checking-verification-list_81387.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

@@ -32,33 +32,14 @@ import service.QueryService;
 
 public class ExitViewController implements Initializable {
 
-    // =========================================================
-    // SERVICES
-    // =========================================================
-
     private final ExitService exitService;
     private final QueryService queryService;
-
-
-    // =========================================================
-    // DATE FORMAT
-    // =========================================================
 
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-
-    // =========================================================
-    // MAIN CONTAINER
-    // =========================================================
-
     @FXML
     private AnchorPane AP_EXIT;
-
-
-    // =========================================================
-    // TICKET SEARCH
-    // =========================================================
 
     @FXML
     private JFXTextField TF_SEARCH_TICKET;
@@ -78,11 +59,6 @@ public class ExitViewController implements Initializable {
     @FXML
     private JFXTextArea TA_STATE;
 
-
-    // =========================================================
-    // EXIT RESULT
-    // =========================================================
-
     @FXML
     private JFXTextArea TA_EXIT_DATE;
 
@@ -98,17 +74,7 @@ public class ExitViewController implements Initializable {
     @FXML
     private JFXButton BTN_REGISTER_EXIT;
 
-
-    // =========================================================
-    // CURRENT TICKET
-    // =========================================================
-
     private ParkingTicket selectedTicket;
-
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
 
     public ExitViewController(ParkingContext context) {
 
@@ -124,11 +90,6 @@ public class ExitViewController implements Initializable {
                 context.getQueryService();
     }
 
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
-
     @Override
     public void initialize(
             URL url,
@@ -143,11 +104,6 @@ public class ExitViewController implements Initializable {
         BTN_REGISTER_EXIT.setDisable(true);
     }
 
-
-    // =========================================================
-    // CONFIGURE SEARCH
-    // =========================================================
-
     private void configureTicketSearch() {
 
         TF_SEARCH_TICKET
@@ -158,17 +114,8 @@ public class ExitViewController implements Initializable {
                 );
     }
 
-
-    // =========================================================
-    // SEARCH TICKET
-    // =========================================================
-
     private void searchTicket(String ticketId) {
 
-        /*
-         * Every time another ticket is searched,
-         * remove the previous exit result.
-         */
         clearExitResult();
 
         if (ticketId == null
@@ -185,9 +132,6 @@ public class ExitViewController implements Initializable {
 
         try {
 
-            /*
-             * Search only for an active ticket.
-             */
             ParkingTicket ticket =
                     queryService.findActiveTicket(
                             ticketId.trim()
@@ -210,11 +154,6 @@ public class ExitViewController implements Initializable {
             BTN_REGISTER_EXIT.setDisable(true);
         }
     }
-
-
-    // =========================================================
-    // SHOW TICKET INFORMATION
-    // =========================================================
 
     private void showTicketInformation(
             ParkingTicket ticket) {
@@ -247,11 +186,6 @@ public class ExitViewController implements Initializable {
                 getTicketStatusName(ticket)
         );
     }
-
-
-    // =========================================================
-    // ANIMATE FOUND TICKET INFORMATION
-    // =========================================================
 
     private void animateTicketInformation() {
 
@@ -293,11 +227,6 @@ public class ExitViewController implements Initializable {
         sequence.play();
     }
 
-
-    // =========================================================
-    // REGISTER EXIT
-    // =========================================================
-
     @FXML
     private void Checkout(ActionEvent event) {
 
@@ -314,28 +243,14 @@ public class ExitViewController implements Initializable {
 
         try {
 
-            // =================================================
-            // REGISTER EXIT
-            // =================================================
-
             ParkingTicket closedTicket =
                     exitService.registerExit(
                             selectedTicket.getId()
                     );
 
-
-            // =================================================
-            // LOAD RESULT INTO CONTROLS
-            // =================================================
-
             showExitResult(
                     closedTicket
             );
-
-
-            // =================================================
-            // UPDATE TICKET STATUS
-            // =================================================
 
             TA_STATE.setText(
                     getTicketStatusName(
@@ -343,17 +258,7 @@ public class ExitViewController implements Initializable {
                     )
             );
 
-
-            // =================================================
-            // RUN CINEMATIC ANIMATION
-            // =================================================
-
             animateExitResult();
-
-
-            // =================================================
-            // PREVENT DUPLICATE EXIT
-            // =================================================
 
             BTN_REGISTER_EXIT.setDisable(true);
 
@@ -368,11 +273,6 @@ public class ExitViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // SHOW EXIT RESULT
-    // =========================================================
-
     private void showExitResult(
             ParkingTicket ticket) {
 
@@ -382,29 +282,16 @@ public class ExitViewController implements Initializable {
         LocalDateTime exitTime =
                 ticket.getExitTime();
 
-
-        /*
-         * IMPORTANT:
-         *
-         * This Duration belongs to java.time.Duration.
-         * It is NOT JavaFX Duration.
-         */
         Duration parkingDuration =
                 Duration.between(
                         entryTime,
                         exitTime
                 );
 
-
         long billedHours =
                 calculateBilledHours(
                         parkingDuration
                 );
-
-
-        // =====================================================
-        // EXIT DATE
-        // =====================================================
 
         TA_EXIT_DATE.setText(
                 exitTime.format(
@@ -412,21 +299,11 @@ public class ExitViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // TOTAL PARKING TIME
-        // =====================================================
-
         TA_PARKING_TIME.setText(
                 formatDuration(
                         parkingDuration
                 )
         );
-
-
-        // =====================================================
-        // BILLED HOURS
-        // =====================================================
 
         TA_BILLED_HOURS.setText(
                 String.valueOf(
@@ -434,29 +311,15 @@ public class ExitViewController implements Initializable {
                 )
         );
 
-
-        // =====================================================
-        // AMOUNT TO COLLECT
-        // =====================================================
-
         TA_AMOUNT_COLLECTED.setText(
-                "₡ "
+                "Ôéí "
                 + ticket
                         .getAmount()
                         .toPlainString()
         );
     }
 
-
-    // =========================================================
-    // CINEMATIC EXIT ANIMATION
-    // =========================================================
-
     private void animateExitResult() {
-
-        // =====================================================
-        // PREPARE RESULT CONTROLS
-        // =====================================================
 
         prepareNode(TA_EXIT_DATE);
 
@@ -465,11 +328,6 @@ public class ExitViewController implements Initializable {
         prepareNode(TA_BILLED_HOURS);
 
         prepareNode(TA_AMOUNT_COLLECTED);
-
-
-        // =====================================================
-        // STATUS ANIMATION
-        // =====================================================
 
         FadeTransition stateFade =
                 new FadeTransition(
@@ -481,21 +339,11 @@ public class ExitViewController implements Initializable {
 
         stateFade.setToValue(1.0);
 
-
-        // =====================================================
-        // EXIT DATE
-        // =====================================================
-
         ParallelTransition exitDateAnimation =
                 createFadeAndSlide(
                         TA_EXIT_DATE,
                         320
                 );
-
-
-        // =====================================================
-        // PARKING TIME
-        // =====================================================
 
         ParallelTransition parkingTimeAnimation =
                 createFadeAndSlide(
@@ -503,42 +351,22 @@ public class ExitViewController implements Initializable {
                         320
                 );
 
-
-        // =====================================================
-        // BILLED HOURS
-        // =====================================================
-
         ParallelTransition billedHoursAnimation =
                 createFadeAndSlide(
                         TA_BILLED_HOURS,
                         320
                 );
 
-
-        // =====================================================
-        // PAUSE BEFORE AMOUNT
-        // =====================================================
-
         PauseTransition pauseBeforeAmount =
                 new PauseTransition(
                         javafx.util.Duration.millis(150)
                 );
-
-
-        // =====================================================
-        // AMOUNT
-        // =====================================================
 
         ParallelTransition amountAnimation =
                 createFadeAndSlide(
                         TA_AMOUNT_COLLECTED,
                         450
                 );
-
-
-        // =====================================================
-        // RESULT SEQUENCE
-        // =====================================================
 
         SequentialTransition resultSequence =
                 new SequentialTransition(
@@ -554,21 +382,11 @@ public class ExitViewController implements Initializable {
                         amountAnimation
                 );
 
-
-        // =====================================================
-        // STATUS + RESULT AT SAME TIME
-        // =====================================================
-
         ParallelTransition completeAnimation =
                 new ParallelTransition(
                         stateFade,
                         resultSequence
                 );
-
-
-        // =====================================================
-        // SHOW MESSAGE AFTER ANIMATION
-        // =====================================================
 
         completeAnimation.setOnFinished(
                 event -> {
@@ -582,14 +400,8 @@ public class ExitViewController implements Initializable {
                 }
         );
 
-
         completeAnimation.play();
     }
-
-
-    // =========================================================
-    // CALCULATE BILLED HOURS
-    // =========================================================
 
     private long calculateBilledHours(
             Duration duration) {
@@ -597,32 +409,13 @@ public class ExitViewController implements Initializable {
         long minutes =
                 duration.toMinutes();
 
-
-        /*
-         * Minimum charge = 1 hour.
-         */
         if (minutes <= 0) {
 
             return 1;
         }
 
-
-        /*
-         * Round up.
-         *
-         * 10 min  -> 1 hour
-         * 60 min  -> 1 hour
-         * 61 min  -> 2 hours
-         * 119 min -> 2 hours
-         * 121 min -> 3 hours
-         */
         return (minutes + 59) / 60;
     }
-
-
-    // =========================================================
-    // FORMAT PARKING DURATION
-    // =========================================================
 
     private String formatDuration(
             Duration duration) {
@@ -630,26 +423,17 @@ public class ExitViewController implements Initializable {
         long totalMinutes =
                 duration.toMinutes();
 
-
         long days =
                 totalMinutes / (24 * 60);
-
 
         long remainingMinutes =
                 totalMinutes % (24 * 60);
 
-
         long hours =
                 remainingMinutes / 60;
 
-
         long minutes =
                 remainingMinutes % 60;
-
-
-        // =====================================================
-        // DAYS
-        // =====================================================
 
         if (days > 0) {
 
@@ -661,11 +445,6 @@ public class ExitViewController implements Initializable {
                     + " min";
         }
 
-
-        // =====================================================
-        // HOURS
-        // =====================================================
-
         if (hours > 0) {
 
             return hours
@@ -674,19 +453,9 @@ public class ExitViewController implements Initializable {
                     + " min";
         }
 
-
-        // =====================================================
-        // MINUTES
-        // =====================================================
-
         return minutes
                 + " min";
     }
-
-
-    // =========================================================
-    // PARKING SPACE TYPE
-    // =========================================================
 
     private String getParkingSpaceTypeName(
             ParkingSpace parkingSpace) {
@@ -695,7 +464,7 @@ public class ExitViewController implements Initializable {
 
             case CAR:
 
-                return "Automóvil";
+                return "Autom├│vil";
 
             case MOTORCYCLE:
 
@@ -703,18 +472,13 @@ public class ExitViewController implements Initializable {
 
             case CARGO:
 
-                return "Vehículo de carga";
+                return "Veh├¡culo de carga";
 
             default:
 
                 return "Desconocido";
         }
     }
-
-
-    // =========================================================
-    // TICKET STATUS
-    // =========================================================
 
     private String getTicketStatusName(
             ParkingTicket ticket) {
@@ -739,11 +503,6 @@ public class ExitViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // PREPARE NODE FOR ANIMATION
-    // =========================================================
-
     private void prepareNode(
             Node node) {
 
@@ -752,20 +511,9 @@ public class ExitViewController implements Initializable {
         node.setTranslateY(7.0);
     }
 
-
-    // =========================================================
-    // CREATE FADE + SLIDE
-    // =========================================================
-
     private ParallelTransition createFadeAndSlide(
             Node node,
             double durationMillis) {
-
-        /*
-         * We write javafx.util.Duration directly because
-         * java.time.Duration is already being used for
-         * calculating the parking duration.
-         */
 
         FadeTransition fade =
                 new FadeTransition(
@@ -779,7 +527,6 @@ public class ExitViewController implements Initializable {
 
         fade.setToValue(1.0);
 
-
         TranslateTransition movement =
                 new TranslateTransition(
                         javafx.util.Duration.millis(
@@ -792,17 +539,11 @@ public class ExitViewController implements Initializable {
 
         movement.setToY(0.0);
 
-
         return new ParallelTransition(
                 fade,
                 movement
         );
     }
-
-
-    // =========================================================
-    // CLEAR TICKET INFORMATION
-    // =========================================================
 
     private void clearTicketInformation() {
 
@@ -816,7 +557,6 @@ public class ExitViewController implements Initializable {
 
         TA_STATE.clear();
 
-
         resetNode(TA_PLATE);
 
         resetNode(TA_SPACE);
@@ -828,11 +568,6 @@ public class ExitViewController implements Initializable {
         resetNode(TA_STATE);
     }
 
-
-    // =========================================================
-    // CLEAR EXIT RESULT
-    // =========================================================
-
     private void clearExitResult() {
 
         TA_EXIT_DATE.clear();
@@ -843,7 +578,6 @@ public class ExitViewController implements Initializable {
 
         TA_AMOUNT_COLLECTED.clear();
 
-
         resetNode(TA_EXIT_DATE);
 
         resetNode(TA_PARKING_TIME);
@@ -852,11 +586,6 @@ public class ExitViewController implements Initializable {
 
         resetNode(TA_AMOUNT_COLLECTED);
     }
-
-
-    // =========================================================
-    // RESET NODE
-    // =========================================================
 
     private void resetNode(
             Node node) {
@@ -867,11 +596,6 @@ public class ExitViewController implements Initializable {
 
         node.setTranslateY(0.0);
     }
-
-
-    // =========================================================
-    // INFORMATION MESSAGE
-    // =========================================================
 
     private void showInformation(
             String title,
@@ -894,22 +618,8 @@ public class ExitViewController implements Initializable {
                 message
         );
 
-        /*
-         * IMPORTANT:
-         *
-         * We use show() instead of showAndWait().
-         *
-         * This message is executed when the animation
-         * finishes, so it must not block JavaFX's
-         * animation/layout processing.
-         */
         alert.show();
     }
-
-
-    // =========================================================
-    // ERROR MESSAGE
-    // =========================================================
 
     private void showError(
             String title,
@@ -934,12 +644,6 @@ public class ExitViewController implements Initializable {
                         : "Ha ocurrido un error inesperado."
         );
 
-        /*
-         * This one CAN remain showAndWait().
-         *
-         * Errors are produced from the normal application
-         * flow and not from the animation's onFinished event.
-         */
         alert.showAndWait();
     }
 }

@@ -1,20 +1,8 @@
-/* ================================================================
-   PARKING COTO
-   Hoja de estilos global
-   Proyecto II - Paradigmas de Programación
-   Universidad Nacional de Costa Rica
-   ================================================================ */
-
-
-/* ================================================================
-   1. CONFIGURACIÓN GENERAL
-   ================================================================ */
 
 .root {
     -fx-font-family: "Trebuchet MS";
     -fx-background-color: #F4F7FB;
 
-    /* Paleta principal */
     -parking-blue: #034F84;
     -parking-blue-dark: #02385E;
     -parking-blue-light: #E8F2F9;
@@ -38,35 +26,14 @@
 
     -parking-border: #DCE3EA;
 }
-
-
-/* ================================================================
-   2. FONDOS PRINCIPALES
-   ================================================================ */
-
 #AnchorPane,
 #AnchorPanerReportsView {
     -fx-background-color: #F4F7FB;
 }
 
-
-/* ================================================================
-   3. LABELS
-   ================================================================ */
-
 .label {
     -fx-text-fill: #243447;
 }
-
-/*
-   Los títulos que ya tienen tamaños definidos desde Scene Builder
-   conservarán sus tamaños.
-*/
-
-
-/* ================================================================
-   4. BOTONES GENERALES JFOENIX
-   ================================================================ */
 
 .jfx-button {
     -fx-background-color: #034F84;
@@ -102,11 +69,6 @@
     );
 }
 
-
-/* ================================================================
-   5. CAMPOS DE TEXTO JFOENIX
-   ================================================================ */
-
 .jfx-text-field {
     -fx-text-fill: #243447;
 
@@ -118,11 +80,6 @@
     -fx-font-size: 13px;
 }
 
-
-/* ================================================================
-   6. TEXT AREA JFOENIX
-   ================================================================ */
-
 .jfx-text-area {
     -fx-text-fill: #243447;
     -fx-prompt-text-fill: #8A98A6;
@@ -132,11 +89,6 @@
 
     -fx-font-size: 13px;
 }
-
-
-/* ================================================================
-   7. MATERIALFX TEXT FIELD
-   ================================================================ */
 
 .mfx-text-field {
     -fx-background-color: #FFFFFF;
@@ -166,11 +118,6 @@
     );
 }
 
-
-/* ================================================================
-   8. MATERIALFX COMBO BOX
-   ================================================================ */
-
 .mfx-combo-box {
     -fx-background-color: #FFFFFF;
 
@@ -195,15 +142,6 @@
         1
     );
 }
-
-
-/* ================================================================
-   9. TARJETAS GENERALES
-   ================================================================ */
-
-/*
-   Paneles principales de formularios.
-*/
 
 #cardRegisterInformationVehicle,
 #cardVehicleInformation,
@@ -236,19 +174,9 @@
     );
 }
 
-
-/* ================================================================
-   10. DASHBOARD - CONTENEDOR
-   ================================================================ */
-
 #cardPrincipalInformation {
     -fx-background-color: #F4F7FB;
 }
-
-
-/* ================================================================
-   11. DASHBOARD - ESPACIOS TOTALES
-   ================================================================ */
 
 #cardTotalSpaces {
     -fx-background-color:
@@ -274,11 +202,6 @@
     );
 }
 
-
-/* ================================================================
-   12. DASHBOARD - OCUPADOS
-   ================================================================ */
-
 #cardOcupated {
     -fx-background-color:
         linear-gradient(
@@ -302,11 +225,6 @@
         3
     );
 }
-
-
-/* ================================================================
-   13. DASHBOARD - DISPONIBLES
-   ================================================================ */
 
 #cardAvailable {
     -fx-background-color:
@@ -332,11 +250,6 @@
     );
 }
 
-
-/* ================================================================
-   14. DASHBOARD - INGRESOS
-   ================================================================ */
-
 #cardTotalRevenue {
     -fx-background-color:
         linear-gradient(
@@ -361,11 +274,6 @@
     );
 }
 
-
-/* ================================================================
-   15. DASHBOARD - OCUPACIÓN POR TIPO
-   ================================================================ */
-
 #cardInformationVehiclesForTotalAndPercentage {
 
     -fx-background-color: #FFFFFF;
@@ -385,11 +293,6 @@
         3
     );
 }
-
-
-/* ================================================================
-   16. DASHBOARD - TICKETS ACTIVOS
-   ================================================================ */
 
 #cardActiveTicket {
 
@@ -424,11 +327,6 @@
     -fx-text-fill: white;
 }
 
-
-/* ================================================================
-   17. NÚMEROS DEL DASHBOARD
-   ================================================================ */
-
 #LBL_TOTAL_SPACES,
 #LBL_SPACES_OCCUPATED,
 #LBL_SPACES_AVAILABLE {
@@ -441,11 +339,6 @@
     -fx-font-size: 23px;
     -fx-font-weight: bold;
 }
-
-
-/* ================================================================
-   18. PROGRESS BAR
-   ================================================================ */
 
 .progress-bar {
     -fx-pref-height: 11px;
@@ -472,11 +365,6 @@
     -fx-background-insets: 0;
 }
 
-
-/* ================================================================
-   19. TABLE VIEW
-   ================================================================ */
-
 .table-view {
 
     -fx-background-color: #FFFFFF;
@@ -499,17 +387,9 @@
     );
 }
 
-
-/* Fondo vacío de tabla */
-
 .table-view .virtual-flow {
     -fx-background-color: #FFFFFF;
 }
-
-
-/* ================================================================
-   20. CABECERA TABLE VIEW
-   ================================================================ */
 
 .table-view .column-header-background {
 
@@ -541,11 +421,6 @@
 
     -fx-alignment: CENTER;
 }
-
-
-/* ================================================================
-   21. FILAS TABLE VIEW
-   ================================================================ */
 
 .table-row-cell {
 
@@ -581,11 +456,6 @@
     -fx-border-color: transparent;
 }
 
-
-/* ================================================================
-   22. SCROLL BAR
-   ================================================================ */
-
 .scroll-bar:vertical,
 .scroll-bar:horizontal {
 
@@ -604,11 +474,6 @@
     -fx-background-radius: 10px;
 }
 
-
-/* ================================================================
-   23. VEHÍCULOS
-   ================================================================ */
-
 #cardRegisterInformationVehicle {
 
     -fx-border-color: #D6E5F0;
@@ -618,11 +483,6 @@
 
     -fx-border-color: #DDE5EB;
 }
-
-
-/* ================================================================
-   24. ESPACIOS DE PARQUEO
-   ================================================================ */
 
 #cardRegisterSpace {
 
@@ -634,11 +494,6 @@
     -fx-background-radius: 10px;
 }
 
-
-/* ================================================================
-   25. BOTÓN FUERA DE SERVICIO
-   ================================================================ */
-
 #BTN_OUT_OF_SERVICE {
 
     -fx-background-color: #C0392B;
@@ -647,11 +502,6 @@
 
     -fx-background-radius: 7px;
 }
-
-
-/* ================================================================
-   26. BOTÓN HABILITAR ESPACIO
-   ================================================================ */
 
 #BTN_RESTORE_SERVICE {
 
@@ -662,30 +512,15 @@
     -fx-background-radius: 7px;
 }
 
-
-/* ================================================================
-   27. INGRESO - DATOS DEL VEHÍCULO
-   ================================================================ */
-
 #cardRegisterDataVehicle {
 
     -fx-border-color: #D4E3EE;
 }
 
-
-/* ================================================================
-   28. INGRESO - RESULTADO
-   ================================================================ */
-
 #cardIncomeResult {
 
     -fx-border-color: #D4E3EE;
 }
-
-
-/* ================================================================
-   29. INGRESO CORRECTO
-   ================================================================ */
 
 #cardEntryCorrected {
 
@@ -710,30 +545,15 @@
     -fx-font-weight: bold;
 }
 
-
-/* ================================================================
-   30. SALIDA - DATOS TICKET
-   ================================================================ */
-
 #cardDataTicket {
 
     -fx-border-color: #D6E4EE;
 }
 
-
-/* ================================================================
-   31. SALIDA - RESULTADO
-   ================================================================ */
-
 #cardResultExit {
 
     -fx-border-color: #D6E4EE;
 }
-
-
-/* ================================================================
-   32. PAGO
-   ================================================================ */
 
 #cardDataPayment {
 
@@ -746,9 +566,6 @@
 
     -fx-border-color: #C8DDEA;
 }
-
-
-/* Botón principal de pago */
 
 #BTN_PROCESS_PAYMENT {
 
@@ -774,23 +591,13 @@
     );
 }
 
-
-/* ================================================================
-   33. REPORTES - CONTENEDOR
-   ================================================================ */
-
 #AnchorPanerReportsView {
 
     -fx-background-color: #F4F7FB;
 }
 
-
-/* ================================================================
-   34. REPORTES - TARJETAS
-   ================================================================ */
-
 #cardTotalTickets,
-#cardTotañTicketsActive,
+#cardTota├▒TicketsActive,
 #cardTotalTicketsClosed,
 #cardTotalTicketsPayment {
 
@@ -810,9 +617,6 @@
     );
 }
 
-
-/* Total tickets */
-
 #cardTotalTickets {
 
     -fx-background-color:
@@ -825,10 +629,7 @@
     -fx-border-color: #BCD8E9;
 }
 
-
-/* Tickets activos */
-
-#cardTotañTicketsActive {
+#cardTota├▒TicketsActive {
 
     -fx-background-color:
         linear-gradient(
@@ -839,9 +640,6 @@
 
     -fx-border-color: #B7DFC8;
 }
-
-
-/* Tickets cerrados */
 
 #cardTotalTicketsClosed {
 
@@ -855,9 +653,6 @@
     -fx-border-color: #D4D8DD;
 }
 
-
-/* Tickets pagados */
-
 #cardTotalTicketsPayment {
 
     -fx-background-color:
@@ -870,11 +665,6 @@
     -fx-border-color: #F0D1A6;
 }
 
-
-/* ================================================================
-   35. REPORTES - NÚMEROS
-   ================================================================ */
-
 #LBL_TOTAL_TICKETS,
 #LBL_TOTAL_TICKETS_ACTIVE,
 #LBL_TOTAL_TICKETS_CLOSE,
@@ -886,11 +676,6 @@
 
     -fx-text-fill: #243447;
 }
-
-
-/* ================================================================
-   36. REPORTES - GRÁFICO
-   ================================================================ */
 
 #cardOccupancyBySpaceType {
 
@@ -911,11 +696,6 @@
         3
     );
 }
-
-
-/* ================================================================
-   37. BAR CHART
-   ================================================================ */
 
 .chart {
 
@@ -960,11 +740,6 @@
     -fx-bar-fill: #034F84;
 }
 
-
-/* ================================================================
-   38. REPORTES - INGRESOS TOTALES
-   ================================================================ */
-
 #cardTotalRevenue {
 
     -fx-background-color:
@@ -990,22 +765,12 @@
     );
 }
 
-
-/* ================================================================
-   39. SEPARADORES
-   ================================================================ */
-
 .separator .line {
 
     -fx-border-color: #D6E0E7;
 
     -fx-border-width: 1px 0 0 0;
 }
-
-
-/* ================================================================
-   40. ESTADOS DESHABILITADOS
-   ================================================================ */
 
 .button:disabled,
 .jfx-button:disabled {
@@ -1016,10 +781,6 @@
 
     -fx-effect: none;
 }
-/* =========================================================
-   PROGRESS BAR - DASHBOARD
-   ========================================================= */
-
 .progress-bar {
     -fx-pref-height: 14px;
     -fx-background-color: transparent;
@@ -1037,29 +798,6 @@
     -fx-background-insets: 0;
     -fx-padding: 7px;
 }
-
-
-/* ================================================================
-   41. PARKING COTO — PREMIUM UI LIMPIO
-   Sin escalado, crecimiento o desplazamiento global en hover.
-   ÚNICA excepción: los botones del menú lateral.
-}
-
-#AnchorPane,
-#AnchorPanerReportsView,
-#cardPrincipalInformation {
-    -fx-background-color:
-        linear-gradient(
-            to bottom right,
-            #F8FBFE 0%,
-            #F1F6FA 48%,
-            #EAF2F8 100%
-        );
-}
-
-/* ================================================================
-   TÍTULOS
-   ================================================================ */
 
 #cardRegisterInformationVehicle > .label,
 #cardVehicleInformation > .label,
@@ -1080,12 +818,6 @@
         1
     );
 }
-
-/* ================================================================
-   BOTONES
-   Hover únicamente visual: color/sombra.
-   No cambia tamaño ni posición.
-   ================================================================ */
 
 .jfx-button {
     -fx-background-color:
@@ -1134,10 +866,6 @@
         2
     );
 }
-
-/* ================================================================
-   CAMPOS
-   ================================================================ */
 
 .jfx-text-field,
 .jfx-text-area {
@@ -1213,11 +941,6 @@
     );
 }
 
-/* ================================================================
-   TARJETAS PRINCIPALES
-   Sin hover de movimiento.
-   ================================================================ */
-
 #cardRegisterInformationVehicle,
 #cardVehicleInformation,
 #cardRegisterSpace,
@@ -1252,16 +975,12 @@
     );
 }
 
-/* ================================================================
-   DASHBOARD Y REPORTES - KPI CARDS
-   ================================================================ */
-
 #cardTotalSpaces,
 #cardOcupated,
 #cardAvailable,
 #cardTotalRevenue,
 #cardTotalTickets,
-#cardTotañTicketsActive,
+#cardTota├▒TicketsActive,
 #cardTotalTicketsClosed,
 #cardTotalTicketsPayment {
     -fx-background-radius: 18px;
@@ -1304,7 +1023,7 @@
     -fx-border-color: rgba(3,79,132,0.25);
 }
 
-#cardTotañTicketsActive {
+#cardTota├▒TicketsActive {
     -fx-background-color:
         linear-gradient(to bottom right, #FFFFFF, #E0F5E9);
     -fx-border-color: rgba(25,135,84,0.25);
@@ -1321,10 +1040,6 @@
         linear-gradient(to bottom right, #FFFFFF, #FCE9CA);
     -fx-border-color: rgba(230,126,34,0.25);
 }
-
-/* ================================================================
-   NÚMEROS KPI
-   ================================================================ */
 
 #LBL_TOTAL_SPACES {
     -fx-text-fill: #034F84;
@@ -1361,10 +1076,6 @@
         1
     );
 }
-
-/* ================================================================
-   TICKET ACTIVO
-   ================================================================ */
 
 #cardActiveTicket {
     -fx-background-color:
@@ -1405,10 +1116,6 @@
         2
     );
 }
-
-/* ================================================================
-   PROGRESS BARS
-   ================================================================ */
 
 .progress-bar {
     -fx-pref-height: 14px;
@@ -1479,11 +1186,6 @@
             #F3A34F
         );
 }
-
-/* ================================================================
-   TABLAS
-   Las filas cambian color, pero jamás tamaño/posición.
-   ================================================================ */
 
 .table-view {
     -fx-background-color: #FFFFFF;
@@ -1594,10 +1296,6 @@
 
 }
 
-/* ================================================================
-   SCROLL BARS
-   ================================================================ */
-
 .scroll-bar .thumb {
     -fx-background-color:
         linear-gradient(
@@ -1608,10 +1306,6 @@
 
     -fx-background-radius: 12px;
 }
-
-/* ================================================================
-   INGRESO EXITOSO
-   ================================================================ */
 
 #cardEntryCorrected {
     -fx-background-color:
@@ -1656,10 +1350,6 @@
         1
     );
 }
-
-/* ================================================================
-   BOTONES ESPECIALES
-   ================================================================ */
 
 #BTN_OUT_OF_SERVICE {
     -fx-background-color:
@@ -1726,11 +1416,6 @@
     );
 }
 
-/* ================================================================
-   REPORTES - BAR CHART
-   Se usan las propiedades JavaFX correctas para las barras.
-   ================================================================ */
-
 #cardOccupancyBySpaceType {
     -fx-background-color:
         linear-gradient(
@@ -1785,11 +1470,6 @@
     -fx-stroke: transparent;
 }
 
-/*
- * IMPORTANTE:
- * En JavaFX las barras del BarChart son Region.
- * -fx-background-color es la propiedad que realmente las pinta.
- */
 #BC_TYPE_SPACE .chart-bar,
 #BC_TYPE_SPACE .default-color0.chart-bar {
     -fx-bar-fill: #0876B9;
@@ -1838,10 +1518,6 @@
     -fx-background-color: transparent;
 }
 
-/* ================================================================
-   ESTADOS DESHABILITADOS
-   ================================================================ */
-
 .button:disabled,
 .jfx-button:disabled {
     -fx-opacity: 0.46;
@@ -1850,10 +1526,6 @@
     -fx-effect: none;
 
 }
-
-/* ================================================================
-   SEPARADORES
-   ================================================================ */
 
 .separator .line {
     -fx-border-color:
@@ -1867,7 +1539,6 @@
     -fx-border-width: 1px 0 0 0;
 }
 
-/* Respuesta al clic, también aislada al menú */
 #BTN_DASHBOARD:pressed,
 #BTN_VEHICLES:pressed,
 #BTN_SPACES:pressed,
@@ -1882,16 +1553,6 @@
 
     -fx-effect: none;
 }
-
-/* =====================================================================
-   FIN MENÚ LATERAL AISLADO
-   ===================================================================== */
-
-
-/* =====================================================================
-   MENÚ LATERAL — DISEÑO Y HOVER EXCLUSIVOS
-   Ningún otro componente del sistema utiliza :hover, scale o translate.
-   ===================================================================== */
 
 #BTN_DASHBOARD,
 #BTN_VEHICLES,
@@ -1913,7 +1574,6 @@
     -fx-cursor: hand;
 }
 
-/* ÚNICO HOVER DEL SISTEMA */
 #BTN_DASHBOARD:hover,
 #BTN_VEHICLES:hover,
 #BTN_SPACES:hover,
@@ -1933,7 +1593,6 @@
     -fx-border-color: transparent transparent transparent #1597D4;
     -fx-border-width: 0 0 0 4px;
 
-    /* El movimiento que sí queremos conservar */
     -fx-translate-x: 3px;
 
     -fx-effect: dropshadow(
@@ -1946,7 +1605,6 @@
     );
 }
 
-/* Clic exclusivo del menú lateral */
 #BTN_DASHBOARD:pressed,
 #BTN_VEHICLES:pressed,
 #BTN_SPACES:pressed,
@@ -1961,7 +1619,3 @@
     -fx-translate-x: 3px;
     -fx-effect: none;
 }
-
-/* =====================================================================
-   FIN MENÚ LATERAL
-   ===================================================================== */

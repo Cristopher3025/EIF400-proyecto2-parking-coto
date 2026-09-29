@@ -6,10 +6,6 @@ import java.time.Duration;
 import java.util.Objects;
 import pricing.PricingPolicy;
 
-/**
- *
- * @author Justin PC
- */
 public abstract class Vehicle {
 
     private final String licensePlate;

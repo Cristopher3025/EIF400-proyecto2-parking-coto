@@ -3,10 +3,6 @@ package model.vehicle;
 import enums.ParkingSpaceType;
 import pricing.ParkingCotoRates;
 
-/**
- *
- * @author Justin PC
- */
 public class Motorcycle extends Vehicle {
 
     public Motorcycle(

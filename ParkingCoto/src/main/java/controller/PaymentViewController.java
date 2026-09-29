@@ -40,36 +40,17 @@ import service.QueryService;
 
 public class PaymentViewController implements Initializable {
 
-    // =========================================================
-    // SERVICES
-    // =========================================================
-
     private final PaymentService paymentService;
 
     private final QueryService queryService;
-
-
-    // =========================================================
-    // FORMAT
-    // =========================================================
 
     private static final DateTimeFormatter DATE_FORMAT =
             DateTimeFormatter.ofPattern(
                     "dd/MM/yyyy HH:mm"
             );
 
-
-    // =========================================================
-    // MAIN CONTAINER
-    // =========================================================
-
     @FXML
     private AnchorPane AP_PAYMENT;
-
-
-    // =========================================================
-    // TICKET SEARCH
-    // =========================================================
 
     @FXML
     private JFXTextField TF_SEARCH_TICKET;
@@ -95,28 +76,13 @@ public class PaymentViewController implements Initializable {
     @FXML
     private JFXTextArea TA_STATE;
 
-
-    // =========================================================
-    // PAYMENT
-    // =========================================================
-
     @FXML
     private MFXComboBox<PaymentType> CB_TYPE_PAYMENT;
 
     @FXML
     private JFXButton BTN_PROCESS_PAYMENT;
 
-
-    // =========================================================
-    // CURRENT TICKET
-    // =========================================================
-
     private ParkingTicket selectedTicket;
-
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
 
     public PaymentViewController(
             ParkingContext context) {
@@ -133,11 +99,6 @@ public class PaymentViewController implements Initializable {
                 context.getQueryService();
     }
 
-
-    // =========================================================
-    // INITIALIZATION
-    // =========================================================
-
     @Override
     public void initialize(
             URL url,
@@ -152,11 +113,6 @@ public class PaymentViewController implements Initializable {
         BTN_PROCESS_PAYMENT.setDisable(true);
     }
 
-
-    // =========================================================
-    // PAYMENT TYPES
-    // =========================================================
-
     private void configurePaymentTypes() {
 
         CB_TYPE_PAYMENT.setItems(
@@ -170,11 +126,6 @@ public class PaymentViewController implements Initializable {
                 .clearSelection();
     }
 
-
-    // =========================================================
-    // TICKET SEARCH
-    // =========================================================
-
     private void configureTicketSearch() {
 
         TF_SEARCH_TICKET
@@ -184,11 +135,6 @@ public class PaymentViewController implements Initializable {
                                 searchTicket(newValue)
                 );
     }
-
-
-    // =========================================================
-    // SEARCH TICKET
-    // =========================================================
 
     private void searchTicket(
             String ticketId) {
@@ -215,26 +161,11 @@ public class PaymentViewController implements Initializable {
             selectedTicket =
                     ticket;
 
-
-            // =================================================
-            // SHOW INFORMATION
-            // =================================================
-
             showTicketInformation(
                     ticket
             );
 
-
-            // =================================================
-            // ANIMATION
-            // =================================================
-
             animateTicketInformation();
-
-
-            // =================================================
-            // ONLY CLOSED TICKETS CAN BE PAID
-            // =================================================
 
             BTN_PROCESS_PAYMENT.setDisable(
                     ticket.getStatus()
@@ -251,11 +182,6 @@ public class PaymentViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // SHOW TICKET INFORMATION
-    // =========================================================
-
     private void showTicketInformation(
             ParkingTicket ticket) {
 
@@ -265,20 +191,17 @@ public class PaymentViewController implements Initializable {
                         .getLicensePlate()
         );
 
-
         TA_SPACE.setText(
                 ticket
                         .getParkingSpace()
                         .getNumber()
         );
 
-
         TA_TYPE.setText(
                 getSpaceTypeName(
                         ticket
                 )
         );
-
 
         TA_ENTRY_DATE.setText(
                 ticket
@@ -287,11 +210,6 @@ public class PaymentViewController implements Initializable {
                                 DATE_FORMAT
                         )
         );
-
-
-        // =====================================================
-        // EXIT DATE
-        // =====================================================
 
         if (ticket.getExitTime() != null) {
 
@@ -308,15 +226,10 @@ public class PaymentViewController implements Initializable {
             TA_EXIT_DATE.clear();
         }
 
-
-        // =====================================================
-        // AMOUNT
-        // =====================================================
-
         if (ticket.getAmount() != null) {
 
             TA_AMOUNT_PAID.setText(
-                    "₡ "
+                    "Ôéí "
                     + ticket
                             .getAmount()
                             .toPlainString()
@@ -327,22 +240,12 @@ public class PaymentViewController implements Initializable {
             TA_AMOUNT_PAID.clear();
         }
 
-
-        // =====================================================
-        // STATE
-        // =====================================================
-
         TA_STATE.setText(
                 getTicketStatusName(
                         ticket
                 )
         );
     }
-
-
-    // =========================================================
-    // ANIMATE TICKET INFORMATION
-    // =========================================================
 
     private void animateTicketInformation() {
 
@@ -359,7 +262,6 @@ public class PaymentViewController implements Initializable {
         prepareNode(TA_AMOUNT_PAID);
 
         prepareNode(TA_STATE);
-
 
         SequentialTransition sequence =
                 new SequentialTransition(
@@ -400,22 +302,12 @@ public class PaymentViewController implements Initializable {
                         )
                 );
 
-
         sequence.play();
     }
-
-
-    // =========================================================
-    // RECORD PAYMENT
-    // =========================================================
 
     @FXML
     private void RecordPayment(
             ActionEvent event) {
-
-        // =====================================================
-        // VALIDATE TICKET
-        // =====================================================
 
         if (selectedTicket == null) {
 
@@ -428,31 +320,20 @@ public class PaymentViewController implements Initializable {
             return;
         }
 
-
-        // =====================================================
-        // PAYMENT TYPE
-        // =====================================================
-
         PaymentType paymentType =
                 CB_TYPE_PAYMENT.getValue();
-
 
         if (paymentType == null) {
 
             showError(
                     "Tipo de pago no seleccionado",
-                    "Debe seleccionar un método de pago."
+                    "Debe seleccionar un m├®todo de pago."
             );
 
             return;
         }
 
-
         try {
-
-            // =================================================
-            // REGISTER PAYMENT
-            // =================================================
 
             Payment payment =
                     paymentService.registerPayment(
@@ -460,34 +341,17 @@ public class PaymentViewController implements Initializable {
                             paymentType
                     );
 
-
-            /*
-             * PaymentService modifies the same ParkingTicket
-             * from CLOSED to PAID.
-             */
-
             showTicketInformation(
                     selectedTicket
             );
-
-
-            // =================================================
-            // DISABLE BUTTON
-            // =================================================
 
             BTN_PROCESS_PAYMENT.setDisable(
                     true
             );
 
-
-            // =================================================
-            // PAYMENT ANIMATION
-            // =================================================
-
             animateSuccessfulPayment(
                     payment
             );
-
 
         } catch (RuntimeException exception) {
 
@@ -498,17 +362,8 @@ public class PaymentViewController implements Initializable {
         }
     }
 
-
-    // =========================================================
-    // SUCCESSFUL PAYMENT ANIMATION
-    // =========================================================
-
     private void animateSuccessfulPayment(
             Payment payment) {
-
-        // =====================================================
-        // STATE
-        // =====================================================
 
         TA_STATE.setOpacity(
                 0.0
@@ -518,11 +373,6 @@ public class PaymentViewController implements Initializable {
                 8.0
         );
 
-
-        // =====================================================
-        // AMOUNT
-        // =====================================================
-
         TA_AMOUNT_PAID.setOpacity(
                 0.0
         );
@@ -531,19 +381,9 @@ public class PaymentViewController implements Initializable {
                 8.0
         );
 
-
-        // =====================================================
-        // PAYMENT TYPE
-        // =====================================================
-
         CB_TYPE_PAYMENT.setOpacity(
                 0.0
         );
-
-
-        // =====================================================
-        // STATE ANIMATION
-        // =====================================================
 
         ParallelTransition stateAnimation =
                 createFadeAndSlide(
@@ -551,21 +391,11 @@ public class PaymentViewController implements Initializable {
                         400
                 );
 
-
-        // =====================================================
-        // AMOUNT ANIMATION
-        // =====================================================
-
         ParallelTransition amountAnimation =
                 createFadeAndSlide(
                         TA_AMOUNT_PAID,
                         450
                 );
-
-
-        // =====================================================
-        // PAYMENT TYPE FADE
-        // =====================================================
 
         FadeTransition paymentTypeFade =
                 new FadeTransition(
@@ -583,11 +413,6 @@ public class PaymentViewController implements Initializable {
                 1.0
         );
 
-
-        // =====================================================
-        // BUTTON EFFECT
-        // =====================================================
-
         ScaleTransition buttonDown =
                 new ScaleTransition(
                         javafx.util.Duration.millis(
@@ -603,7 +428,6 @@ public class PaymentViewController implements Initializable {
         buttonDown.setToY(
                 0.96
         );
-
 
         ScaleTransition buttonUp =
                 new ScaleTransition(
@@ -621,17 +445,11 @@ public class PaymentViewController implements Initializable {
                 1.0
         );
 
-
         SequentialTransition buttonAnimation =
                 new SequentialTransition(
                         buttonDown,
                         buttonUp
                 );
-
-
-        // =====================================================
-        // RESULT
-        // =====================================================
 
         SequentialTransition resultAnimation =
                 new SequentialTransition(
@@ -657,27 +475,12 @@ public class PaymentViewController implements Initializable {
                         paymentTypeFade
                 );
 
-
-        // =====================================================
-        // FINAL MESSAGE
-        // =====================================================
-
         resultAnimation.setOnFinished(
                 event -> {
 
-                    /*
-                     * IMPORTANT:
-                     *
-                     * showInformation() uses show(),
-                     * not showAndWait().
-                     *
-                     * Therefore the dialog does not block
-                     * JavaFX while the animation is completing.
-                     */
-
                     showInformation(
                             "Pago registrado",
-                            "El pago de ₡"
+                            "El pago de Ôéí"
                             + payment
                                     .getAmount()
                                     .toPlainString()
@@ -690,14 +493,8 @@ public class PaymentViewController implements Initializable {
                 }
         );
 
-
         resultAnimation.play();
     }
-
-
-    // =========================================================
-    // SPACE TYPE
-    // =========================================================
 
     private String getSpaceTypeName(
             ParkingTicket ticket) {
@@ -708,29 +505,21 @@ public class PaymentViewController implements Initializable {
 
             case CAR:
 
-                return "Automóvil";
-
+                return "Autom├│vil";
 
             case MOTORCYCLE:
 
                 return "Motocicleta";
 
-
             case CARGO:
 
-                return "Vehículo de carga";
-
+                return "Veh├¡culo de carga";
 
             default:
 
                 return "Desconocido";
         }
     }
-
-
-    // =========================================================
-    // TICKET STATUS
-    // =========================================================
 
     private String getTicketStatusName(
             ParkingTicket ticket) {
@@ -741,27 +530,19 @@ public class PaymentViewController implements Initializable {
 
                 return "Activo";
 
-
             case CLOSED:
 
                 return "Cerrado";
 
-
             case PAID:
 
                 return "Pagado";
-
 
             default:
 
                 return "Desconocido";
         }
     }
-
-
-    // =========================================================
-    // PAYMENT TYPE
-    // =========================================================
 
     private String getPaymentTypeName(
             PaymentType paymentType) {
@@ -772,22 +553,15 @@ public class PaymentViewController implements Initializable {
 
                 return "Efectivo";
 
-
             case CARD:
 
                 return "Tarjeta";
-
 
             default:
 
                 return paymentType.toString();
         }
     }
-
-
-    // =========================================================
-    // PREPARE NODE FOR ANIMATION
-    // =========================================================
 
     private void prepareNode(
             Node node) {
@@ -801,11 +575,6 @@ public class PaymentViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // CREATE FADE + SLIDE
-    // =========================================================
-
     private ParallelTransition createFadeAndSlide(
             Node node,
             double durationMillis) {
@@ -818,7 +587,6 @@ public class PaymentViewController implements Initializable {
                         node
                 );
 
-
         fade.setFromValue(
                 0.0
         );
@@ -826,7 +594,6 @@ public class PaymentViewController implements Initializable {
         fade.setToValue(
                 1.0
         );
-
 
         TranslateTransition movement =
                 new TranslateTransition(
@@ -836,7 +603,6 @@ public class PaymentViewController implements Initializable {
                         node
                 );
 
-
         movement.setFromY(
                 7.0
         );
@@ -845,17 +611,11 @@ public class PaymentViewController implements Initializable {
                 0.0
         );
 
-
         return new ParallelTransition(
                 fade,
                 movement
         );
     }
-
-
-    // =========================================================
-    // RESET NODE
-    // =========================================================
 
     private void resetNode(
             Node node) {
@@ -881,11 +641,6 @@ public class PaymentViewController implements Initializable {
         );
     }
 
-
-    // =========================================================
-    // CLEAR INFORMATION
-    // =========================================================
-
     private void clearTicketInformation() {
 
         TA_PLATE.clear();
@@ -901,11 +656,6 @@ public class PaymentViewController implements Initializable {
         TA_AMOUNT_PAID.clear();
 
         TA_STATE.clear();
-
-
-        // =====================================================
-        // RESET ANIMATION STATES
-        // =====================================================
 
         resetNode(
                 TA_PLATE
@@ -943,20 +693,10 @@ public class PaymentViewController implements Initializable {
                 BTN_PROCESS_PAYMENT
         );
 
-
-        // =====================================================
-        // CLEAR PAYMENT SELECTION
-        // =====================================================
-
         CB_TYPE_PAYMENT
                 .getSelectionModel()
                 .clearSelection();
     }
-
-
-    // =========================================================
-    // INFORMATION MESSAGE
-    // =========================================================
 
     private void showInformation(
             String title,
@@ -967,40 +707,20 @@ public class PaymentViewController implements Initializable {
                         Alert.AlertType.INFORMATION
                 );
 
-
         alert.setTitle(
                 "Parking Coto"
         );
-
 
         alert.setHeaderText(
                 title
         );
 
-
         alert.setContentText(
                 message
         );
 
-
-        /*
-         * IMPORTANT:
-         *
-         * DO NOT use showAndWait() here.
-         *
-         * This method is called from the onFinished event
-         * of the payment animation.
-         *
-         * show() opens the dialog without blocking the
-         * JavaFX animation/layout processing.
-         */
         alert.show();
     }
-
-
-    // =========================================================
-    // ERROR MESSAGE
-    // =========================================================
 
     private void showError(
             String title,
@@ -1011,16 +731,13 @@ public class PaymentViewController implements Initializable {
                         Alert.AlertType.ERROR
                 );
 
-
         alert.setTitle(
                 "Parking Coto"
         );
 
-
         alert.setHeaderText(
                 title
         );
-
 
         alert.setContentText(
                 message != null
@@ -1028,13 +745,6 @@ public class PaymentViewController implements Initializable {
                         : "Ha ocurrido un error inesperado."
         );
 
-
-        /*
-         * This can remain showAndWait().
-         *
-         * These errors occur during the normal action flow,
-         * not from the animation's onFinished event.
-         */
         alert.showAndWait();
     }
 }
