@@ -131,7 +131,7 @@ public class ReportsViewController {
         );
 
         LBL_TOTAL_REVENUE.setText(
-                "Ôéí "
+                " "
                 + queryService
                         .getTotalRevenue()
                         .toPlainString()
@@ -176,7 +176,7 @@ public class ReportsViewController {
 
         XYChart.Data<String, Number> carData =
                 new XYChart.Data<>(
-                        "Autom├│vil",
+                        "Automóvil",
                         0
                 );
 

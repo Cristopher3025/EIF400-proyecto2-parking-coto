@@ -226,7 +226,7 @@ public class EntryViewController implements Initializable {
         if (selectedVehicle == null) {
 
             showError(
-                    "Veh├¡culo no seleccionado",
+                    "Veículo no seleccionado",
                     "Debe buscar una placa registrada antes de realizar el ingreso."
             );
 
@@ -468,7 +468,7 @@ public class EntryViewController implements Initializable {
 
             case CAR:
 
-                return "Autom├│vil";
+                return "Automóvil";
 
             case MOTORCYCLE:
 
@@ -491,7 +491,7 @@ public class EntryViewController implements Initializable {
 
             case CAR:
 
-                return "Autom├│vil";
+                return "Automóvil";
 
             case MOTORCYCLE:
 

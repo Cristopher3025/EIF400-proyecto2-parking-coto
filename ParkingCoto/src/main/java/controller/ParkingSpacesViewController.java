@@ -41,13 +41,13 @@ public class ParkingSpacesViewController implements Initializable {
     private final QueryService queryService;
 
     private static final String TYPE_CAR =
-            "Autom├│vil";
+            "Automóvil";
 
     private static final String TYPE_MOTORCYCLE =
             "Motocicleta";
 
     private static final String TYPE_CARGO =
-            "Veh├¡culo de carga";
+            "Vehículo de carga";
 
     @FXML
     private AnchorPane AP_PARKING_SPACES;
@@ -161,7 +161,7 @@ public class ParkingSpacesViewController implements Initializable {
                     if (space.getParkedVehicle() == null) {
 
                         return new ReadOnlyStringWrapper(
-                                "ÔÇö"
+                                " "
                         );
                     }
 
@@ -609,7 +609,7 @@ public class ParkingSpacesViewController implements Initializable {
             default:
 
                 throw new IllegalArgumentException(
-                        "Tipo de espacio no v├ílido."
+                        "Tipo de espacio no válido."
                 );
         }
     }

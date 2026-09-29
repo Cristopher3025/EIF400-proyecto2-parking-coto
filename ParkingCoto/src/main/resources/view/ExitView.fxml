@@ -63,7 +63,7 @@
 
             <children>
 
-                <Label layoutX="196.0" prefHeight="58.0" prefWidth="181.0" text="Resultado de la salida">
+                <Label layoutX="196.0" prefHeight="58.0" prefWidth="216.0" text="Resultado de la salida">
 
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />

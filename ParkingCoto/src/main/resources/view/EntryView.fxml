@@ -17,7 +17,7 @@
 
          <children>
 
-            <Label layoutX="132.0" layoutY="8.0" prefHeight="58.0" prefWidth="152.0" text="Datos veh├¡culo">
+            <Label layoutX="132.0" layoutY="8.0" prefHeight="58.0" prefWidth="152.0" text="Datos vehículo">
 
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
@@ -61,7 +61,7 @@
 
          <children>
 
-            <Label layoutX="199.0" layoutY="14.0" prefHeight="58.0" prefWidth="181.0" text="Resultado del ingreso">
+            <Label layoutX="200.0" prefHeight="58.0" prefWidth="181.0" text="Resultado del ingreso">
 
                <font>
                   <Font name="Trebuchet MS" size="18.0" />

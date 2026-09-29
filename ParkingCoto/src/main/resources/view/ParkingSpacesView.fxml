@@ -20,7 +20,7 @@
 
             <children>
 
-                <Label layoutX="98.0" layoutY="76.0" prefHeight="58.0" prefWidth="152.0" text="Registrar espacio">
+                <Label layoutX="98.0" layoutY="76.0" prefHeight="58.0" prefWidth="192.0" text="Registrar espacio">
 
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />
@@ -28,7 +28,7 @@
 
                 </Label>
 
-                <Label layoutX="84.0" layoutY="161.0" prefHeight="25.0" prefWidth="77.0" text="N├║mero">
+                <Label layoutX="84.0" layoutY="161.0" prefHeight="25.0" prefWidth="77.0" text="Número">
 
                     <font>
                         <Font size="11.0" />
@@ -66,7 +66,7 @@
 
                 </ImageView>
 
-                <JFXTextField fx:id="TF_SEARCH_SPACES" layoutX="54.0" layoutY="72.0" prefHeight="25.0" prefWidth="472.0" promptText="Buscar por id, tipo, estado o veh├¡culo..." />
+                <JFXTextField fx:id="TF_SEARCH_SPACES" layoutX="54.0" layoutY="72.0" prefHeight="25.0" prefWidth="472.0" promptText="Buscar por id, tipo, estado o vehículo..." />
 
                 <JFXButton fx:id="BTN_OUT_OF_SERVICE" layoutX="245.0" layoutY="108.0" onAction="#MarkOutOfService" prefHeight="35.0" prefWidth="145.0" text="Fuera de servicio" />
 
@@ -76,11 +76,11 @@
 
                     <columns>
 
-                        <TableColumn fx:id="TV_RW_ID" prefWidth="159.0" text="N├║mero" />
+                        <TableColumn fx:id="TV_RW_ID" prefWidth="159.0" text="Número de espacio" />
 
                         <TableColumn fx:id="TV_RW_TYPE_VEHICLE" prefWidth="145.0" text="Tipo" />
 
-                        <TableColumn fx:id="TV_RW_VEHICLE" prefWidth="118.0" text="Veh├¡culo" />
+                        <TableColumn fx:id="TV_RW_VEHICLE" prefWidth="118.0" text="Vehículo" />
 
                         <TableColumn fx:id="TV_RW_STATE" minWidth="5.0" prefWidth="155.0" text="Estado" />
 

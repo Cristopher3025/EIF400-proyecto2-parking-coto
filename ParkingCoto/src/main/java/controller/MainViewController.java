@@ -221,7 +221,7 @@ public class MainViewController implements Initializable {
         );
 
         LBL_TOTAL_REVENUE.setText(
-                "Ôéí "
+                " "
                 + queryService
                         .getTotalRevenue()
                         .toPlainString()
