@@ -312,7 +312,7 @@ public class ExitViewController implements Initializable {
         );
 
         TA_AMOUNT_COLLECTED.setText(
-                "Ôéí "
+                " "
                 + ticket
                         .getAmount()
                         .toPlainString()
@@ -464,7 +464,7 @@ public class ExitViewController implements Initializable {
 
             case CAR:
 
-                return "Autom├│vil";
+                return "Automóvil";
 
             case MOTORCYCLE:
 
@@ -472,7 +472,7 @@ public class ExitViewController implements Initializable {
 
             case CARGO:
 
-                return "Veh├¡culo de carga";
+                return "Vehículo de carga";
 
             default:
 

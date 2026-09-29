@@ -420,7 +420,7 @@ public class TicketsViewController implements Initializable {
 
             case CAR:
 
-                return "Autom├│vil";
+                return "Automóvil";
 
             case MOTORCYCLE:
 
@@ -428,7 +428,7 @@ public class TicketsViewController implements Initializable {
 
             case CARGO:
 
-                return "Veh├¡culo de carga";
+                return "Vehículo de carga";
 
             default:
 

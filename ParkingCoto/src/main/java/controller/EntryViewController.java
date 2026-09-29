@@ -476,7 +476,7 @@ public class EntryViewController implements Initializable {
 
             case CARGO:
 
-                return "Veh├¡culo de carga";
+                return "Vehículo de carga";
 
             default:
 
@@ -499,7 +499,7 @@ public class EntryViewController implements Initializable {
 
             case CARGO:
 
-                return "Veh├¡culo de carga";
+                return "Vehículo de carga";
 
             default:
 

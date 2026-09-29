@@ -42,13 +42,13 @@ public class VehiclesViewController implements Initializable {
     private final QueryService queryService;
 
     private static final String TYPE_CAR =
-            "Autom├│vil";
+            "Automóvil";
 
     private static final String TYPE_MOTORCYCLE =
             "Motocicleta";
 
     private static final String TYPE_CARGO =
-            "Veh├¡culo de carga";
+            "Vehículo de carga";
 
     @FXML
     private AnchorPane AP_VEHICLES;
@@ -366,8 +366,8 @@ public class VehiclesViewController implements Initializable {
             clearForm();
 
             showInformation(
-                    "Veh├¡culo registrado",
-                    "El veh├¡culo "
+                    "VehÍculo registrado",
+                    "El vehÍculo "
                     + vehicle.getLicensePlate()
                     + " fue registrado correctamente."
             );
@@ -375,7 +375,7 @@ public class VehiclesViewController implements Initializable {
         } catch (RuntimeException exception) {
 
             showError(
-                    "No se pudo registrar el veh├¡culo",
+                    "No se pudo registrar el vehículo",
                     exception.getMessage()
             );
         }
@@ -417,7 +417,7 @@ public class VehiclesViewController implements Initializable {
         if (selectedType == null) {
 
             throw new IllegalArgumentException(
-                    "Debe seleccionar un tipo de veh├¡culo."
+                    "Debe seleccionar un tipo de vehículo."
             );
         }
 
@@ -453,7 +453,7 @@ public class VehiclesViewController implements Initializable {
             default:
 
                 throw new IllegalArgumentException(
-                        "Tipo de veh├¡culo no v├ílido."
+                        "Tipo de vehículo no válido."
                 );
         }
     }

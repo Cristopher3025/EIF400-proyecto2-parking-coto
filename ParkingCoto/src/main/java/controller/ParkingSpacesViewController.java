@@ -161,7 +161,7 @@ public class ParkingSpacesViewController implements Initializable {
                     if (space.getParkedVehicle() == null) {
 
                         return new ReadOnlyStringWrapper(
-                                " "
+                                "-"
                         );
                     }
 

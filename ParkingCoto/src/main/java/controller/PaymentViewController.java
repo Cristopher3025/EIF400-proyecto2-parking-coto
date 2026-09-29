@@ -229,7 +229,7 @@ public class PaymentViewController implements Initializable {
         if (ticket.getAmount() != null) {
 
             TA_AMOUNT_PAID.setText(
-                    "Ôéí "
+                    " "
                     + ticket
                             .getAmount()
                             .toPlainString()
@@ -327,7 +327,7 @@ public class PaymentViewController implements Initializable {
 
             showError(
                     "Tipo de pago no seleccionado",
-                    "Debe seleccionar un m├®todo de pago."
+                    "Debe seleccionar un método de pago."
             );
 
             return;
@@ -480,7 +480,7 @@ public class PaymentViewController implements Initializable {
 
                     showInformation(
                             "Pago registrado",
-                            "El pago de Ôéí"
+                            "El pago de"
                             + payment
                                     .getAmount()
                                     .toPlainString()
@@ -505,7 +505,7 @@ public class PaymentViewController implements Initializable {
 
             case CAR:
 
-                return "Autom├│vil";
+                return "Automóvil";
 
             case MOTORCYCLE:
 
@@ -513,7 +513,7 @@ public class PaymentViewController implements Initializable {
 
             case CARGO:
 
-                return "Veh├¡culo de carga";
+                return "Vehículo de carga";
 
             default:
 
